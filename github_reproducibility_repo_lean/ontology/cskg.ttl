@@ -1,0 +1,1347 @@
+@prefix cskg: <https://w3id.org/cskg/ontology/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/cskg/ontology/>
+    a owl:Ontology ;
+    dct:title "Cancer Survivorship Accelerometry Knowledge Graph Ontology" ;
+    dct:description "Working ontology for representing NHANES accelerometry data for adults with self-reported cancer history, derived movement features, processing protocols, protocol application results, provenance, and semantic harmonisation constraints." ;
+    dct:creator "Cancer Survivorship Knowledge Graphs project" ;
+    dct:created "2026-08-10"^^xsd:date ;
+    owl:versionInfo "0.1.0-pilot" ;
+    rdfs:comment "This is a pilot representation ontology aligned with the current processed NHANES data layer and pilot RDF graph. It does not by itself demonstrate cross-study semantic harmonisation. Some source code values remain intentionally unmapped until NHANES codebook and NCIt alignment are completed." .
+
+#################################################################
+# Annotation properties
+#################################################################
+
+cskg:termStatus
+    a owl:AnnotationProperty ;
+    rdfs:label "term status" ;
+    rdfs:comment "Project annotation used to identify whether a term is ready, provisional, or awaiting codebook/expert review." .
+
+cskg:sourceVariable
+    a owl:AnnotationProperty ;
+    rdfs:label "source variable" ;
+    rdfs:comment "Original NHANES source variable associated with a class or property." .
+
+cskg:requiresCodebookMapping
+    a owl:AnnotationProperty ;
+    rdfs:label "requires codebook mapping" ;
+    rdfs:comment "Marks terms whose literal code values should later be mapped to controlled vocabulary terms." .
+
+cskg:compatibilityWarning
+    a owl:AnnotationProperty ;
+    rdfs:label "compatibility warning" ;
+    rdfs:comment "Marks measurement or protocol terms with known interpretive constraints." .
+
+#################################################################
+# Core classes
+#################################################################
+
+cskg:Participant
+    a owl:Class ;
+    rdfs:label "participant" ;
+    rdfs:comment "A retained NHANES adult participant with self-reported cancer history. This class represents study participation, not a clinically verified cancer survivor identity." ;
+    cskg:termStatus "ready" .
+
+cskg:CancerHistoryAssertion
+    a owl:Class ;
+    rdfs:label "cancer history assertion" ;
+    rdfs:comment "A source assertion that a participant reported ever being told they had cancer or a malignancy. This is not equivalent to registry-confirmed cancer diagnosis." ;
+    cskg:sourceVariable "MCQ220" ;
+    cskg:termStatus "ready" .
+
+cskg:SelfReportedCancerHistory
+    a owl:Class ;
+    rdfs:subClassOf cskg:CancerHistoryAssertion ;
+    rdfs:label "self-reported cancer history" ;
+    rdfs:comment "A cancer-history assertion derived from the single NHANES self-report question MCQ220. It has no stage, treatment, recurrence, current disease status, registry verification, or EHR verification in this project data layer." ;
+    skos:scopeNote "Use this term when the evidence is the MCQ220 self-report item only. Do not use it as an unqualified clinical diagnosis or validated survivorship cohort definition." ;
+    cskg:sourceVariable "MCQ220" ;
+    cskg:termStatus "ready" .
+
+cskg:CancerDiagnosis
+    a owl:Class ;
+    rdfs:label "cancer diagnosis" ;
+    rdfs:comment "A reported cancer diagnosis slot extracted from NHANES MCQ cancer type and age-at-diagnosis variables. It is source-reported survey information, not registry-confirmed or EHR-confirmed diagnosis evidence." ;
+    skos:scopeNote "NCIt concept IRIs must not be asserted for this class until the cancer type mapping review is approved and provenance is attached." ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:DailyMovementSummary
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "daily movement summary" ;
+    rdfs:comment "A participant-day summary from NHANES physical activity monitor daily data." ;
+    cskg:termStatus "ready" .
+
+cskg:DerivedMovementFeatureSet
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "derived movement feature set" ;
+    rdfs:comment "A participant-day movement-summary feature set computed from minute-level accelerometry observations by the local pipeline. These values are not MVPA, sedentary, active/inactive, or clinical physical activity classifications." ;
+    skos:scopeNote "Do not infer behavioral intensity categories from these feature values without a separately validated MIMS-compatible protocol." ;
+    cskg:termStatus "ready" .
+
+cskg:ProcessingProtocol
+    a owl:Class ;
+    rdfs:subClassOf prov:Plan ;
+    rdfs:label "processing protocol" ;
+    rdfs:comment "An operational data-processing or valid-day rule applied to accelerometry data. Current reviewed protocols are completeness/sensitivity rules, not clinical physical activity classifications." ;
+    cskg:compatibilityWarning "Do not interpret candidate valid-day protocols as MVPA or sedentary behaviour thresholds." ;
+    cskg:termStatus "needs expert review" .
+
+cskg:ProtocolApplicationResult
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "protocol application result" ;
+    rdfs:comment "Participant-level result produced by applying a processing protocol to available daily accelerometry summaries." ;
+    cskg:termStatus "ready" .
+
+cskg:CohortFlowStage
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "cohort flow stage" ;
+    rdfs:comment "A reproducibility count for one inclusion or availability stage in cohort construction." ;
+    cskg:termStatus "ready" .
+
+cskg:DevicePlacement
+    a owl:Class ;
+    rdfs:label "device placement" ;
+    rdfs:comment "Monitor body-placement concept. Current pilot data retains NHANES placement codes until codebook mapping is finalized." ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:DeviceOrientation
+    a owl:Class ;
+    rdfs:label "device orientation" ;
+    rdfs:comment "Monitor orientation concept. Current pilot data retains NHANES orientation codes until codebook mapping is finalized." ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:MinuteWearState
+    a owl:Class ;
+    rdfs:label "minute wear state" ;
+    rdfs:comment "Predicted minute-level state such as wake wear, sleep wear, non-wear, or unknown. Current values remain source-coded until NHANES labels are finalized." ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:QualityFlagScore
+    a owl:Class ;
+    rdfs:label "quality flag score" ;
+    rdfs:comment "Quality flag score derived from NHANES PAXQFM/PAXQFD. PAXQFD is modeled as the sum of minute-level PAXQFM values, not as a simple count of flagged minutes." ;
+    cskg:termStatus "ready" .
+
+cskg:QualityFlagLabelSet
+    a owl:Class ;
+    rdfs:label "quality flag label set" ;
+    rdfs:comment "Minute-level NHANES quality flag labels. Code labels need final NHANES codebook interpretation." ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:EpochSpecification
+    a owl:Class ;
+    rdfs:label "epoch specification" ;
+    rdfs:comment "Temporal resolution of an accelerometry observation. The current PAXMIN observations use 60-second epochs." ;
+    cskg:termStatus "ready" .
+
+cskg:DerivedMovementFeature
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "derived movement feature" ;
+    rdfs:comment "A computed movement feature such as total valid MIMS or peak-30 valid MIMS." ;
+    cskg:termStatus "ready" .
+
+cskg:ValidDayRule
+    a owl:Class ;
+    rdfs:subClassOf cskg:ProcessingProtocol ;
+    rdfs:label "valid-day rule" ;
+    rdfs:comment "A rule defining whether a monitored day is complete enough for downstream analysis." ;
+    cskg:termStatus "needs expert review" .
+
+cskg:ClassificationAssertion
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "classification assertion" ;
+    rdfs:comment "A computed assertion produced by applying an operational rule. In the current pilot, eligibility assertions are not clinical activity-status labels." ;
+    cskg:termStatus "ready" .
+
+cskg:SurveyDesignVariable
+    a owl:Class ;
+    rdfs:label "survey design variable" ;
+    rdfs:comment "NHANES survey-design variable such as sample weight, primary sampling unit, or stratum." ;
+    cskg:termStatus "ready" .
+
+cskg:SourceVariableValue
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "source variable value" ;
+    rdfs:comment "Preserved raw NHANES covariate value that should not be over-modeled until selected for the ontology." ;
+    cskg:termStatus "defer" .
+
+#################################################################
+# Units and measurement interpretation
+#################################################################
+
+cskg:MIMSUnit
+    a qudt:Unit ;
+    rdfs:label "MIMS unit" ;
+    rdfs:comment "Custom unit resource for Monitor-Independent Movement Summary values. MIMS is represented as an algorithmic movement-summary unit, not as counts per minute and not as a validated behavioral intensity category." ;
+    skos:scopeNote "Use this unit for NHANES wrist MIMS values in this pilot. Do not convert it to hip-worn counts/minute or MVPA/sedentary minutes without a separately validated crosswalk." ;
+    cskg:termStatus "ready" .
+
+#################################################################
+# Object properties
+#################################################################
+
+cskg:hasCancerHistoryAssertion
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range cskg:CancerHistoryAssertion ;
+    rdfs:label "has cancer history assertion" ;
+    rdfs:comment "Links a participant to their source cancer-history assertion." ;
+    cskg:termStatus "ready" .
+
+cskg:hasMeasurementUnit
+    a owl:ObjectProperty ;
+    rdfs:range qudt:Unit ;
+    rdfs:label "has measurement unit" ;
+    rdfs:comment "Links a measurement, feature, or protocol metric to its declared unit resource." ;
+    cskg:termStatus "ready" .
+
+cskg:hasCancerDiagnosis
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range cskg:CancerDiagnosis ;
+    rdfs:label "has cancer diagnosis" ;
+    rdfs:comment "Links a participant to a reported cancer diagnosis slot." ;
+    cskg:termStatus "ready" .
+
+cskg:hadAccelerometerSensor
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range sosa:Sensor ;
+    rdfs:label "had accelerometer sensor" ;
+    rdfs:comment "Links a participant to the physical activity monitor sensor represented in NHANES PAXHD metadata." ;
+    cskg:termStatus "ready" .
+
+cskg:hasDailyMovementSummary
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range cskg:DailyMovementSummary ;
+    rdfs:label "has daily movement summary" ;
+    rdfs:comment "Links a participant to a participant-day movement summary." ;
+    cskg:termStatus "ready" .
+
+cskg:hasMinuteObservation
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:DailyMovementSummary ;
+    rdfs:range sosa:Observation ;
+    rdfs:label "has minute observation" ;
+    rdfs:comment "Links a daily summary to minute-level accelerometry observations sampled for the pilot graph." ;
+    cskg:termStatus "ready" .
+
+cskg:hasDerivedFeatureSet
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:DailyMovementSummary ;
+    rdfs:range cskg:DerivedMovementFeatureSet ;
+    rdfs:label "has derived feature set" ;
+    rdfs:comment "Links a daily summary to features derived from minute-level data." ;
+    cskg:termStatus "ready" .
+
+cskg:hasProtocolApplicationResult
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range cskg:ProtocolApplicationResult ;
+    rdfs:label "has protocol application result" ;
+    rdfs:comment "Links a participant to the result of applying a processing protocol." ;
+    cskg:termStatus "ready" .
+
+cskg:appliesProtocol
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:ProtocolApplicationResult ;
+    rdfs:range cskg:ProcessingProtocol ;
+    rdfs:label "applies protocol" ;
+    rdfs:comment "Links a protocol application result to the protocol that generated it." ;
+    cskg:termStatus "ready" .
+
+cskg:hasDevicePlacement
+    a owl:ObjectProperty ;
+    rdfs:domain sosa:Sensor ;
+    rdfs:range cskg:DevicePlacement ;
+    rdfs:label "has device placement" ;
+    rdfs:comment "Links a sensor to a normalized device placement concept. The pilot currently uses source placement codes instead." ;
+    cskg:termStatus "planned" .
+
+cskg:hasDeviceOrientation
+    a owl:ObjectProperty ;
+    rdfs:domain sosa:Sensor ;
+    rdfs:range cskg:DeviceOrientation ;
+    rdfs:label "has device orientation" ;
+    rdfs:comment "Links a sensor to a normalized device orientation concept. The pilot currently uses source orientation codes instead." ;
+    cskg:termStatus "planned" .
+
+cskg:hasPredictedWearState
+    a owl:ObjectProperty ;
+    rdfs:domain sosa:Observation ;
+    rdfs:range cskg:MinuteWearState ;
+    rdfs:label "has predicted wear state" ;
+    rdfs:comment "Links a minute observation to a normalized predicted wear-state concept. The pilot currently uses source prediction codes instead." ;
+    cskg:termStatus "planned" .
+
+#################################################################
+# Datatype properties
+#################################################################
+
+cskg:nhanesCycle
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:string ;
+    rdfs:label "NHANES cycle" ;
+    rdfs:comment "NHANES two-year cycle, for example 2011-2012." ;
+    cskg:termStatus "ready" .
+
+cskg:ageInYears
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "age in years" ;
+    cskg:sourceVariable "RIDAGEYR" ;
+    cskg:termStatus "ready" .
+
+cskg:hasGenderCode
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has gender code" ;
+    cskg:sourceVariable "RIAGENDR" ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:hasRaceEthnicityCode
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has race/ethnicity code" ;
+    cskg:sourceVariable "RIDRETH1/RIDRETH3" ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:hasCancerHistoryCode
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has cancer history code" ;
+    cskg:sourceVariable "MCQ220" ;
+    cskg:termStatus "ready" .
+
+cskg:diagnosisSlot
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "diagnosis slot" ;
+    rdfs:comment "NHANES diagnosis slot or source suffix for repeated cancer diagnosis variables." ;
+    cskg:termStatus "ready" .
+
+cskg:hasCancerTypeCode
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has cancer type code" ;
+    cskg:sourceVariable "MCQ230*" ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:ageAtDiagnosis
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "age at diagnosis" ;
+    cskg:sourceVariable "MCQ240*" ;
+    cskg:termStatus "ready" .
+
+cskg:sourceTypeVariable
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "source type variable" ;
+    rdfs:comment "Original NHANES cancer type source variable." ;
+    cskg:termStatus "ready" .
+
+cskg:sourceAgeVariable
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "source age variable" ;
+    rdfs:comment "Original NHANES age-at-diagnosis source variable." ;
+    cskg:termStatus "ready" .
+
+cskg:hasDevicePlacementCode
+    a owl:DatatypeProperty ;
+    rdfs:domain sosa:Sensor ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has device placement code" ;
+    cskg:sourceVariable "PAXHAND" ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:hasDeviceOrientationCode
+    a owl:DatatypeProperty ;
+    rdfs:domain sosa:Sensor ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has device orientation code" ;
+    cskg:sourceVariable "PAXORENT" ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:monitorDayIndex
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "monitor day index" ;
+    rdfs:comment "Monitor day number within the NHANES physical activity monitor protocol." ;
+    cskg:sourceVariable "PAXDAYD/PAXDAYM" ;
+    cskg:termStatus "ready" .
+
+cskg:dayOfWeekCode
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DailyMovementSummary ;
+    rdfs:range xsd:integer ;
+    rdfs:label "day of week code" ;
+    cskg:sourceVariable "PAXDAYWD" ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:totalRecordedMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DailyMovementSummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "total recorded minutes" ;
+    cskg:sourceVariable "PAXTMD" ;
+    cskg:termStatus "ready" .
+
+cskg:validMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DailyMovementSummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "valid minutes" ;
+    cskg:sourceVariable "PAXVMD" ;
+    cskg:termStatus "ready" .
+
+cskg:dailyTotalMIMS
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "daily total MIMS" ;
+    rdfs:comment "Daily total triaxial Monitor-Independent Movement Summary value. This is a movement-summary value only and should not be interpreted with hip-count thresholds or as MVPA/sedentary time." ;
+    cskg:sourceVariable "PAXMTSD" ;
+    cskg:compatibilityWarning "Wrist MIMS is not interchangeable with hip-worn counts per minute thresholds." ;
+    skos:scopeNote "No validated wrist-MIMS cut-point is asserted here for MVPA, sedentary behavior, active/inactive status, or clinical physical activity classification." ;
+    cskg:termStatus "ready" .
+
+cskg:wakeWearMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DailyMovementSummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "wake wear minutes" ;
+    cskg:sourceVariable "PAXWWMD" ;
+    cskg:termStatus "ready" .
+
+cskg:sleepWearMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DailyMovementSummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "sleep wear minutes" ;
+    cskg:sourceVariable "PAXSWMD" ;
+    cskg:termStatus "ready" .
+
+cskg:nonWearMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DailyMovementSummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "non-wear minutes" ;
+    cskg:sourceVariable "PAXNWMD" ;
+    cskg:termStatus "ready" .
+
+cskg:unknownStatusMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DailyMovementSummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "unknown-status minutes" ;
+    cskg:sourceVariable "PAXUMD" ;
+    cskg:termStatus "ready" .
+
+cskg:qualityFlagScore
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "quality flag score" ;
+    rdfs:comment "Daily or minute-level quality flag score. Daily PAXQFD matches the sum of minute-level PAXQFM values." ;
+    cskg:sourceVariable "PAXQFD/PAXQFM" ;
+    cskg:termStatus "ready" .
+
+cskg:epochLengthSeconds
+    a owl:DatatypeProperty ;
+    rdfs:domain sosa:Observation ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "epoch length seconds" ;
+    cskg:sourceVariable "PAXTSM" ;
+    cskg:termStatus "ready" .
+
+cskg:minuteMIMS
+    a owl:DatatypeProperty ;
+    rdfs:domain sosa:Observation ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "minute MIMS" ;
+    cskg:sourceVariable "PAXMTSM" ;
+    cskg:compatibilityWarning "Minute-level MIMS values should be interpreted with MIMS-compatible definitions only." ;
+    skos:scopeNote "A minute MIMS value is not an intensity category unless a separate validated cut-point protocol is explicitly applied." ;
+    cskg:termStatus "ready" .
+
+cskg:predictedWearStateCode
+    a owl:DatatypeProperty ;
+    rdfs:domain sosa:Observation ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "predicted wear state code" ;
+    cskg:sourceVariable "PAXPREDM" ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:validMinuteRows
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DerivedMovementFeatureSet ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "valid minute rows" ;
+    cskg:termStatus "ready" .
+
+cskg:dailyTotalValidMIMS
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DerivedMovementFeatureSet ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "daily total valid MIMS" ;
+    rdfs:comment "Daily total MIMS recomputed from valid minute rows. This is a movement-summary feature, not an activity-intensity label." ;
+    cskg:termStatus "ready" .
+
+cskg:peak30ValidMIMS
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DerivedMovementFeatureSet ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "peak-30 valid MIMS" ;
+    rdfs:comment "Highest rolling 30-minute sum of valid minute-level MIMS values for a participant-day." ;
+    cskg:compatibilityWarning "Derived feature only; not a clinical physical activity classification." ;
+    cskg:termStatus "ready" .
+
+cskg:validWakeMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DerivedMovementFeatureSet ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "valid wake minutes" ;
+    cskg:termStatus "ready" .
+
+cskg:validSleepMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DerivedMovementFeatureSet ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "valid sleep minutes" ;
+    cskg:termStatus "ready" .
+
+cskg:validNonWearMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DerivedMovementFeatureSet ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "valid non-wear minutes" ;
+    cskg:termStatus "ready" .
+
+cskg:validUnknownMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DerivedMovementFeatureSet ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "valid unknown-status minutes" ;
+    cskg:termStatus "ready" .
+
+cskg:hasExecutableExpression
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "has executable expression" ;
+    rdfs:comment "Machine-readable expression used by the local pipeline to apply a candidate valid-day protocol." ;
+    cskg:termStatus "needs expert review" .
+
+cskg:minValidDays
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:integer ;
+    rdfs:label "minimum valid days" ;
+    cskg:termStatus "ready" .
+
+cskg:metric
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "metric" ;
+    rdfs:comment "Metric used by a processing protocol, for example valid minutes or wake wear minutes." ;
+    cskg:termStatus "ready" .
+
+cskg:unit
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "unit" ;
+    rdfs:comment "Plain source unit label retained for readability. Use cskg:hasMeasurementUnit for machine-readable unit resources where available." ;
+    cskg:termStatus "ready" .
+
+cskg:observedDays
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProtocolApplicationResult ;
+    rdfs:range xsd:integer ;
+    rdfs:label "observed days" ;
+    cskg:termStatus "ready" .
+
+cskg:validDayCount
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProtocolApplicationResult ;
+    rdfs:range xsd:integer ;
+    rdfs:label "valid day count" ;
+    cskg:termStatus "ready" .
+
+cskg:eligibleUnderProtocol
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProtocolApplicationResult ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "eligible under protocol" ;
+    rdfs:comment "Whether a participant meets the operational completeness rule. This is not a clinical physical activity classification." ;
+    cskg:termStatus "ready" .
+
+cskg:totalMIMS
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProtocolApplicationResult ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "total MIMS" ;
+    cskg:compatibilityWarning "Interpret only with the protocol, placement, and MIMS-compatible definitions used to generate the value." ;
+    skos:scopeNote "Protocol-level total MIMS is a movement-summary aggregate, not a clinical physical activity classification." ;
+    cskg:termStatus "ready" .
+
+cskg:sourceQuestion
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerHistoryAssertion ;
+    rdfs:range xsd:string ;
+    rdfs:label "source question" ;
+    rdfs:comment "Human-readable source questionnaire item or prompt behind a source assertion." ;
+    cskg:termStatus "ready" .
+
+cskg:assertionInterpretationLimit
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerHistoryAssertion ;
+    rdfs:range xsd:string ;
+    rdfs:label "assertion interpretation limit" ;
+    rdfs:comment "Explicit limitation on how a source assertion may be interpreted." ;
+    cskg:termStatus "ready" .
+
+cskg:minuteRowCount
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DerivedMovementFeatureSet ;
+    rdfs:range xsd:integer ;
+    rdfs:label "minute row count" ;
+    cskg:termStatus "ready" .
+
+cskg:qualityFlagLabels
+    a owl:DatatypeProperty ;
+    rdfs:domain sosa:Observation ;
+    rdfs:range xsd:string ;
+    rdfs:label "quality flag labels" ;
+    cskg:sourceVariable "PAXFLGSM" ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:hasSurveyWeight
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has survey weight" ;
+    cskg:sourceVariable "WTMEC2YR" ;
+    cskg:termStatus "ready" .
+
+cskg:hasPrimarySamplingUnit
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has primary sampling unit" ;
+    cskg:sourceVariable "SDMVPSU" ;
+    cskg:termStatus "ready" .
+
+cskg:hasStratum
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has stratum" ;
+    cskg:sourceVariable "SDMVSTRA" ;
+    cskg:termStatus "ready" .
+
+cskg:hasSourceVariableValue
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:string ;
+    rdfs:label "has source variable value" ;
+    rdfs:comment "Temporary property for preserving raw source covariate values without over-modeling them." ;
+    cskg:termStatus "defer" .
+
+#################################################################
+# Compatibility aliases from the first semantic mapping
+#################################################################
+
+cskg:hasMonitorDayIndex
+    a owl:DatatypeProperty ;
+    owl:equivalentProperty cskg:monitorDayIndex ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has monitor day index" ;
+    rdfs:comment "Compatibility alias retained from the first semantic mapping. The pilot graph currently uses cskg:monitorDayIndex." ;
+    cskg:termStatus "ready" .
+
+cskg:hasDayOfWeekCode
+    a owl:DatatypeProperty ;
+    owl:equivalentProperty cskg:dayOfWeekCode ;
+    rdfs:domain cskg:DailyMovementSummary ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has day of week code" ;
+    rdfs:comment "Compatibility alias retained from the first semantic mapping. The pilot graph currently uses cskg:dayOfWeekCode." ;
+    cskg:requiresCodebookMapping true ;
+    cskg:termStatus "needs codebook mapping" .
+
+cskg:peak30MIMS
+    a owl:DatatypeProperty ;
+    owl:equivalentProperty cskg:peak30ValidMIMS ;
+    rdfs:domain cskg:DerivedMovementFeatureSet ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "peak-30 MIMS" ;
+    rdfs:comment "Compatibility alias retained from the first semantic mapping. The pilot graph currently uses cskg:peak30ValidMIMS for valid-only peak-30 MIMS." ;
+    cskg:compatibilityWarning "Derived feature only; not a clinical physical activity classification." ;
+    cskg:termStatus "ready" .
+
+#################################################################
+# Source-code label enrichment properties
+#################################################################
+
+cskg:genderLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:string ;
+    rdfs:label "gender label" ;
+    rdfs:comment "CDC/NHANES source label for the participant gender code." ;
+    cskg:termStatus "source label ready" .
+
+cskg:raceEthnicityLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:string ;
+    rdfs:label "race/ethnicity label" ;
+    rdfs:comment "CDC/NHANES source label for the participant race/ethnicity code." ;
+    cskg:termStatus "source label ready" .
+
+cskg:cancerHistoryLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range xsd:string ;
+    rdfs:label "cancer history label" ;
+    rdfs:comment "CDC/NHANES source label for the self-reported cancer history code." ;
+    cskg:termStatus "source label ready" .
+
+cskg:devicePlacementLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain sosa:Sensor ;
+    rdfs:range xsd:string ;
+    rdfs:label "device placement label" ;
+    rdfs:comment "CDC/NHANES source label for the physical activity monitor placement code." ;
+    cskg:termStatus "source label ready" .
+
+cskg:deviceOrientationLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain sosa:Sensor ;
+    rdfs:range xsd:string ;
+    rdfs:label "device orientation label" ;
+    rdfs:comment "CDC/NHANES source label for the physical activity monitor orientation code." ;
+    cskg:termStatus "source label ready" .
+
+cskg:cancerTypeLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "cancer type label" ;
+    rdfs:comment "CDC/NHANES source label for the reported cancer type code. Exact NCIt concept mapping remains separate review work." ;
+    cskg:termStatus "source label ready; NCIt pending" .
+
+cskg:cancerTypeMappingStatus
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "cancer type mapping status" ;
+    rdfs:comment "Status of the cancer type source-label to controlled-vocabulary mapping." ;
+    cskg:termStatus "ready" .
+
+cskg:cancerTypeExternalVocabulary
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "cancer type external vocabulary" ;
+    rdfs:comment "Target external vocabulary proposed for cancer type mapping, for example NCIt." ;
+    cskg:termStatus "ready" .
+
+cskg:cancerTypeExternalCandidateLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "cancer type external candidate label" ;
+    rdfs:comment "Candidate external label used as a starting point for NCIt mapping review. This is not an asserted concept ID." ;
+    cskg:termStatus "needs expert/ontology review" .
+
+cskg:reviewedNCItConcept
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:label "reviewed NCIt concept" ;
+    rdfs:comment "Reviewed NCI Thesaurus concept IRI asserted only as qualified mapping metadata for a self-reported NHANES cancer type code." ;
+    cskg:termStatus "reviewed qualified mapping" .
+
+cskg:reviewedNCItCode
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "reviewed NCIt code" ;
+    rdfs:comment "Reviewed NCI Thesaurus code for the source cancer type code." ;
+    cskg:termStatus "reviewed qualified mapping" .
+
+cskg:reviewedNCItLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "reviewed NCIt label" ;
+    rdfs:comment "Reviewed NCI Thesaurus label for the source cancer type code." ;
+    cskg:termStatus "reviewed qualified mapping" .
+
+cskg:ncitMappingRelation
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "NCIt mapping relation" ;
+    rdfs:comment "Reviewed mapping relation between the NHANES source code label and the NCI Thesaurus concept, for example exactMatch, closeMatch, or broadMatch." ;
+    cskg:termStatus "reviewed qualified mapping" .
+
+cskg:ncitReviewDecision
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "NCIt review decision" ;
+    rdfs:comment "Reviewer decision imported from the completed cancer-code NCIt review sheet." ;
+    cskg:termStatus "reviewed qualified mapping" .
+
+cskg:ncitClinicalNoteRequired
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "NCIt clinical note required" ;
+    rdfs:comment "Flag indicating whether the reviewer required a clinical caveat for the NCIt mapping." ;
+    cskg:termStatus "reviewed qualified mapping" .
+
+cskg:ncitReviewerComment
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "NCIt reviewer comment" ;
+    rdfs:comment "Reviewer comment explaining the clinical limitation or mapping rationale." ;
+    cskg:termStatus "reviewed qualified mapping" .
+
+cskg:ncitMappingInterpretationLimit
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:CancerDiagnosis ;
+    rdfs:range xsd:string ;
+    rdfs:label "NCIt mapping interpretation limit" ;
+    rdfs:comment "Interpretation limit attached to reviewed NCIt mappings so they are not treated as confirmed histology, registry diagnosis, stage, treatment, recurrence, or current disease status." ;
+    cskg:termStatus "reviewed qualified mapping" .
+
+cskg:dayOfWeekLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:DailyMovementSummary ;
+    rdfs:range xsd:string ;
+    rdfs:label "day of week label" ;
+    rdfs:comment "CDC/NHANES source label for the monitor day-of-week code." ;
+    cskg:termStatus "source label ready" .
+
+cskg:predictedWearStateLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain sosa:Observation ;
+    rdfs:range xsd:string ;
+    rdfs:label "predicted wear state label" ;
+    rdfs:comment "CDC/NHANES source label for the minute-level predicted wake, sleep, non-wear, or unknown state." ;
+    cskg:termStatus "source label ready" .
+
+cskg:qualityFlagScoreLabel
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "quality flag score label" ;
+    rdfs:comment "Source-label interpretation of the quality flag score, such as no quality flags or one or more quality flags." ;
+    cskg:termStatus "source label ready" .
+
+cskg:qualityFlagLabelDescription
+    a owl:DatatypeProperty ;
+    rdfs:domain sosa:Observation ;
+    rdfs:range xsd:string ;
+    rdfs:label "quality flag label description" ;
+    rdfs:comment "Description of an individual PAXFLGSM flag letter observed for a minute. Multiple values can occur for one observation." ;
+    cskg:termStatus "source label ready" .
+
+#################################################################
+# Protocol review enrichment properties
+#################################################################
+
+cskg:protocolReviewDecision
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "protocol review decision" ;
+    rdfs:comment "Review decision for a processing protocol, for example accept or revise." ;
+    cskg:termStatus "ready" .
+
+cskg:protocolApprovedLabel
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "protocol approved label" ;
+    rdfs:comment "Reviewed label approved for a processing protocol." ;
+    cskg:termStatus "ready" .
+
+cskg:protocolApprovedExpression
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "protocol approved expression" ;
+    rdfs:comment "Reviewed executable expression approved for a processing protocol." ;
+    cskg:termStatus "ready" .
+
+cskg:protocolApprovedMinValidDays
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:integer ;
+    rdfs:label "protocol approved minimum valid days" ;
+    rdfs:comment "Reviewed minimum valid-day requirement approved for a processing protocol." ;
+    cskg:termStatus "ready" .
+
+cskg:protocolApprovedStatus
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "protocol approved status" ;
+    rdfs:comment "Approved status for the protocol, such as approved_completeness_rule or approved_sensitivity_rule." ;
+    cskg:termStatus "ready" .
+
+cskg:protocolReviewerComment
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "protocol reviewer comment" ;
+    rdfs:comment "Reviewer comment explaining the protocol review decision." ;
+    cskg:termStatus "ready" .
+
+cskg:protocolReviewerName
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "protocol reviewer name" ;
+    rdfs:comment "Name or role of the reviewer who made the protocol decision." ;
+    cskg:termStatus "ready" .
+
+cskg:protocolReviewDate
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "protocol review date" ;
+    rdfs:comment "Date when the protocol review decision was made." ;
+    cskg:termStatus "ready" .
+
+cskg:protocolClassificationType
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "protocol classification type" ;
+    rdfs:comment "Operational class of a protocol, for example completeness rule or sensitivity completeness rule." ;
+    cskg:termStatus "ready" .
+
+cskg:protocolCompatibilityWarning
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "protocol compatibility warning" ;
+    rdfs:comment "Warning that limits how a protocol may be interpreted." ;
+    cskg:termStatus "ready" .
+
+cskg:protocolInterpretationLimit
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range xsd:string ;
+    rdfs:label "protocol interpretation limit" ;
+    rdfs:comment "Explicit statement limiting a protocol to data completeness or sensitivity analysis rather than activity classification." ;
+    cskg:termStatus "ready" .
+
+#################################################################
+# Synthetic harmonisation extension
+#################################################################
+
+cskg:ActivityDataSource
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "activity data source" ;
+    rdfs:comment "A source pattern for accelerometry-derived activity data, such as NHANES wrist MIMS or the synthetic hip counts/minute demonstration source." ;
+    cskg:termStatus "ready" .
+
+cskg:HarmonisedSourceVariableMapping
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "harmonised source variable mapping" ;
+    rdfs:comment "A mapping from a source-specific accelerometry variable to a harmonised construct, with compatibility status and interpretation limits." ;
+    cskg:termStatus "ready" .
+
+cskg:HarmonisedActivityDefinition
+    a owl:Class ;
+    rdfs:subClassOf prov:Plan ;
+    rdfs:label "harmonised activity definition" ;
+    rdfs:comment "A source-specific activity, completeness, or classification definition represented in the harmonisation layer." ;
+    cskg:termStatus "ready" .
+
+cskg:SyntheticDailyActivitySummary
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "synthetic daily activity summary" ;
+    rdfs:comment "A deterministic synthetic hip-worn counts/minute participant-day summary used only to demonstrate semantic harmonisation mechanics. It is not measured hip accelerometry and not a conversion from wrist MIMS." ;
+    cskg:compatibilityWarning "Synthetic source for review/demo only; do not use for epidemiologic effect estimation." ;
+    cskg:termStatus "ready" .
+
+cskg:CountsPerMinuteUnit
+    a qudt:Unit ;
+    rdfs:label "counts per minute" ;
+    rdfs:comment "Source-specific vertical-axis counts/minute unit used by the synthetic hip-worn demonstration source. It is not numerically equivalent to wrist MIMS." ;
+    cskg:termStatus "ready" .
+
+cskg:mapsFromActivitySource
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:HarmonisedSourceVariableMapping ;
+    rdfs:range cskg:ActivityDataSource ;
+    rdfs:label "maps from activity source" ;
+    cskg:termStatus "ready" .
+
+cskg:definedForActivitySource
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:HarmonisedActivityDefinition ;
+    rdfs:range cskg:ActivityDataSource ;
+    rdfs:label "defined for activity source" ;
+    cskg:termStatus "ready" .
+
+cskg:fromActivitySource
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:SyntheticDailyActivitySummary ;
+    rdfs:range cskg:ActivityDataSource ;
+    rdfs:label "from activity source" ;
+    cskg:termStatus "ready" .
+
+cskg:seededFromNhanesDay
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:SyntheticDailyActivitySummary ;
+    rdfs:range cskg:DailyMovementSummary ;
+    rdfs:label "seeded from NHANES day" ;
+    rdfs:comment "Links a synthetic demonstration day to the NHANES participant-day row used as its deterministic seed. This is provenance for a demo artifact, not evidence of cross-device measurement validation." ;
+    cskg:termStatus "ready" .
+
+cskg:hasSyntheticDailyActivitySummary
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:Participant ;
+    rdfs:range cskg:SyntheticDailyActivitySummary ;
+    rdfs:label "has synthetic daily activity summary" ;
+    cskg:termStatus "ready" .
+
+cskg:sourceId
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "source identifier" ;
+    cskg:termStatus "ready" .
+
+cskg:sourceTable
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "source table" ;
+    cskg:termStatus "ready" .
+
+cskg:sourceVariableName
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "source variable name" ;
+    cskg:termStatus "ready" .
+
+cskg:sourceLabel
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "source label" ;
+    cskg:termStatus "ready" .
+
+cskg:sourceDeviceLocation
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "source device location" ;
+    cskg:termStatus "ready" .
+
+cskg:sourceDeviceType
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "source device type" ;
+    cskg:termStatus "ready" .
+
+cskg:sourceMovementMetric
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "source movement metric" ;
+    cskg:termStatus "ready" .
+
+cskg:sourceUnit
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "source unit" ;
+    cskg:termStatus "ready" .
+
+cskg:harmonisedConstruct
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "harmonised construct" ;
+    cskg:termStatus "ready" .
+
+cskg:harmonisedProperty
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "harmonised property" ;
+    cskg:termStatus "ready" .
+
+cskg:protocolRole
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "protocol role" ;
+    cskg:termStatus "ready" .
+
+cskg:compatibilityStatus
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "compatibility status" ;
+    rdfs:comment "Harmonisation status such as compatible after protocol abstraction, source-specific metric, or not harmonisable with NHANES wrist MIMS in the current KG." ;
+    cskg:termStatus "ready" .
+
+cskg:harmonisationAction
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "harmonisation action" ;
+    cskg:termStatus "ready" .
+
+cskg:interpretationLimit
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "interpretation limit" ;
+    cskg:termStatus "ready" .
+
+cskg:threshold
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "threshold" ;
+    cskg:termStatus "ready" .
+
+cskg:definitionType
+    a owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:label "definition type" ;
+    cskg:termStatus "ready" .
+
+cskg:validWearMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:SyntheticDailyActivitySummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "valid wear minutes" ;
+    cskg:termStatus "ready" .
+
+cskg:dailyTotalAxisCounts
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:SyntheticDailyActivitySummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "daily total axis counts" ;
+    cskg:compatibilityWarning "Source-specific synthetic hip counts; not numerically equivalent to wrist MIMS." ;
+    cskg:termStatus "ready" .
+
+cskg:meanAxisCountsPerMinute
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:SyntheticDailyActivitySummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "mean axis counts per minute" ;
+    cskg:compatibilityWarning "Source-specific synthetic hip counts/minute metric." ;
+    cskg:termStatus "ready" .
+
+cskg:sourceDefinedMVPAMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:SyntheticDailyActivitySummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "source-defined MVPA minutes" ;
+    rdfs:comment "MVPA minutes defined only by the synthetic hip counts/minute source-specific cut point. This must not be inferred for NHANES wrist MIMS." ;
+    cskg:termStatus "ready" .
+
+cskg:sourceDefinedSedentaryMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:SyntheticDailyActivitySummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "source-defined sedentary minutes" ;
+    rdfs:comment "Sedentary minutes defined only by the synthetic hip counts/minute source-specific cut point. This must not be inferred for NHANES wrist MIMS." ;
+    cskg:termStatus "ready" .
+
+cskg:validDayUnderSourceProtocol
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:SyntheticDailyActivitySummary ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "valid day under source protocol" ;
+    cskg:termStatus "ready" .
+
+#################################################################
+# Protocol citation provenance extension
+#################################################################
+
+cskg:ProtocolCitationEvidence
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "protocol citation evidence" ;
+    rdfs:comment "Citation or local review evidence attached to a processing protocol. Evidence rows distinguish source-variable support, literature context, and project review status." ;
+    cskg:termStatus "ready" .
+
+cskg:hasProtocolCitationEvidence
+    a owl:ObjectProperty ;
+    rdfs:domain cskg:ProcessingProtocol ;
+    rdfs:range cskg:ProtocolCitationEvidence ;
+    rdfs:label "has protocol citation evidence" ;
+    cskg:termStatus "ready" .
+
+cskg:citationRole
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProtocolCitationEvidence ;
+    rdfs:range xsd:string ;
+    rdfs:label "citation role" ;
+    cskg:termStatus "ready" .
+
+cskg:sourceType
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProtocolCitationEvidence ;
+    rdfs:range xsd:string ;
+    rdfs:label "source type" ;
+    cskg:termStatus "ready" .
+
+cskg:sourceUrl
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProtocolCitationEvidence ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "source URL" ;
+    cskg:termStatus "ready" .
+
+cskg:citedClaim
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProtocolCitationEvidence ;
+    rdfs:range xsd:string ;
+    rdfs:label "cited claim" ;
+    cskg:termStatus "ready" .
+
+cskg:supportsProtocolComponent
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProtocolCitationEvidence ;
+    rdfs:range xsd:string ;
+    rdfs:label "supports protocol component" ;
+    cskg:termStatus "ready" .
+
+cskg:supportLevel
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProtocolCitationEvidence ;
+    rdfs:range xsd:string ;
+    rdfs:label "support level" ;
+    rdfs:comment "Scoped support level, for example direct source-variable support or context only; not a blanket validation claim." ;
+    cskg:termStatus "ready" .
+
+cskg:evidenceStatus
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:ProtocolCitationEvidence ;
+    rdfs:range xsd:string ;
+    rdfs:label "evidence status" ;
+    cskg:termStatus "ready" .
+
+#################################################################
+# Independent NHANES 2003-2006 PAM extension
+#################################################################
+
+cskg:IndependentPAMDailySummary
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "independent PAM daily summary" ;
+    rdfs:comment "A participant-day summary from the independent NHANES 2003-2006 hip-worn ActiGraph Physical Activity Monitor source. These nodes are source-specific validation summaries and are not linked as the same participants as the NHANES 2011-2014 wrist/MIMS cohort." ;
+    cskg:compatibilityWarning "Do not convert hip ActiGraph counts or steps to wrist MIMS, MVPA, sedentary time, or clinical physical-activity status." ;
+    cskg:termStatus "ready" .
+
+cskg:StepsPerMinuteUnit
+    a qudt:Unit ;
+    rdfs:label "steps per minute" ;
+    rdfs:comment "Source-specific steps/minute unit used by NHANES 2005-2006 hip-worn ActiGraph PAM outputs. It is not numerically equivalent to wrist MIMS." ;
+    cskg:termStatus "ready" .
+
+cskg:sourceParticipantIdentifier
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:IndependentPAMDailySummary ;
+    rdfs:range xsd:integer ;
+    rdfs:label "source participant identifier" ;
+    rdfs:comment "Source-local participant identifier retained for independent validation summaries. It does not imply identity linkage to the NHANES 2011-2014 wrist/MIMS participants." ;
+    cskg:termStatus "ready" .
+
+cskg:reliableMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:IndependentPAMDailySummary ;
+    rdfs:range xsd:integer ;
+    rdfs:label "reliable minutes" ;
+    cskg:sourceVariable "PAXSTAT" ;
+    cskg:termStatus "ready" .
+
+cskg:inCalibrationMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:IndependentPAMDailySummary ;
+    rdfs:range xsd:integer ;
+    rdfs:label "in-calibration minutes" ;
+    cskg:sourceVariable "PAXCAL" ;
+    cskg:termStatus "ready" .
+
+cskg:nonzeroActivityCountMinutes
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:IndependentPAMDailySummary ;
+    rdfs:range xsd:integer ;
+    rdfs:label "nonzero activity-count minutes" ;
+    cskg:sourceVariable "PAXINTEN" ;
+    cskg:termStatus "ready" .
+
+cskg:maxAxisCountsPerMinute
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:IndependentPAMDailySummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "maximum axis counts per minute" ;
+    cskg:sourceVariable "PAXINTEN" ;
+    cskg:compatibilityWarning "Hip ActiGraph counts/minute are not interchangeable with wrist MIMS." ;
+    cskg:termStatus "ready" .
+
+cskg:dailyTotalSteps
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:IndependentPAMDailySummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "daily total steps" ;
+    cskg:sourceVariable "PAXSTEP" ;
+    cskg:compatibilityWarning "PAXSTEP is a source-specific hip-worn step metric and is not inferred from wrist MIMS." ;
+    cskg:termStatus "ready" .
+
+cskg:maxStepsPerMinute
+    a owl:DatatypeProperty ;
+    rdfs:domain cskg:IndependentPAMDailySummary ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "maximum steps per minute" ;
+    cskg:sourceVariable "PAXSTEP" ;
+    cskg:termStatus "ready" .
+

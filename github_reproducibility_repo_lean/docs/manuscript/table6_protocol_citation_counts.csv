@@ -1,0 +1,5 @@
+Evidence role,Support level,Rows
+literature_context,context_only_not_threshold_validation,1
+literature_context,context_only_not_wrist_mims_validation,2
+project_review_decision,local_project_review_support,3
+source_variable_definition,direct_source_variable_support,6

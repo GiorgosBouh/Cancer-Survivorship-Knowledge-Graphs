@@ -1,0 +1,4 @@
+protocol_id,label,valid_day_expression,min_valid_days,metric,unit,notes
+wake_wear_10h_min4,At least 10 hours valid wake wear on at least 4 days,PAXWWMD >= 600,4,valid wake wear minutes,minute,Candidate eligibility rule using PAXDAY valid wake wear minutes.
+wake_wear_12h_min4,At least 12 hours valid wake wear on at least 4 days,PAXWWMD >= 720,4,valid wake wear minutes,minute,Sensitivity rule for stricter wake wear completeness.
+valid_minutes_20h_min4,At least 20 hours valid data on at least 4 days,PAXVMD >= 1200,4,valid minutes,minute,Candidate 24-hour completeness rule using total valid minutes.

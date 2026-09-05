@@ -1,0 +1,552 @@
+{
+  "created_at_utc": "2026-09-05T19:51:18.149346+00:00",
+  "graph": "data/processed/pilot_kg.ttl",
+  "queries_dir": "queries/competency",
+  "query_count": 9,
+  "results": [
+    {
+      "query": "queries/competency/cq1_protocol_discordance.rq",
+      "variables": [
+        "participant",
+        "participant_id",
+        "left_protocol",
+        "right_protocol",
+        "left_eligible",
+        "right_eligible"
+      ],
+      "row_count": 40,
+      "sample_rows": [
+        {
+          "participant": "https://w3id.org/cskg/resource/participant/2011-2012/62813",
+          "participant_id": "62813",
+          "left_protocol": "https://w3id.org/cskg/resource/protocol/valid_minutes_20h_min4",
+          "right_protocol": "https://w3id.org/cskg/resource/protocol/wake_wear_10h_min4",
+          "left_eligible": "true",
+          "right_eligible": "false"
+        },
+        {
+          "participant": "https://w3id.org/cskg/resource/participant/2011-2012/62813",
+          "participant_id": "62813",
+          "left_protocol": "https://w3id.org/cskg/resource/protocol/valid_minutes_20h_min4",
+          "right_protocol": "https://w3id.org/cskg/resource/protocol/wake_wear_12h_min4",
+          "left_eligible": "true",
+          "right_eligible": "false"
+        },
+        {
+          "participant": "https://w3id.org/cskg/resource/participant/2011-2012/62948",
+          "participant_id": "62948",
+          "left_protocol": "https://w3id.org/cskg/resource/protocol/valid_minutes_20h_min4",
+          "right_protocol": "https://w3id.org/cskg/resource/protocol/wake_wear_12h_min4",
+          "left_eligible": "true",
+          "right_eligible": "false"
+        },
+        {
+          "participant": "https://w3id.org/cskg/resource/participant/2011-2012/62948",
+          "participant_id": "62948",
+          "left_protocol": "https://w3id.org/cskg/resource/protocol/wake_wear_10h_min4",
+          "right_protocol": "https://w3id.org/cskg/resource/protocol/wake_wear_12h_min4",
+          "left_eligible": "true",
+          "right_eligible": "false"
+        },
+        {
+          "participant": "https://w3id.org/cskg/resource/participant/2011-2012/63017",
+          "participant_id": "63017",
+          "left_protocol": "https://w3id.org/cskg/resource/protocol/valid_minutes_20h_min4",
+          "right_protocol": "https://w3id.org/cskg/resource/protocol/wake_wear_10h_min4",
+          "left_eligible": "true",
+          "right_eligible": "false"
+        }
+      ]
+    },
+    {
+      "query": "queries/competency/cq2_protocol_review_status.rq",
+      "variables": [
+        "protocol_id",
+        "label",
+        "expression",
+        "min_days",
+        "review_decision",
+        "approved_status",
+        "classification_type",
+        "interpretation_limit"
+      ],
+      "row_count": 3,
+      "sample_rows": [
+        {
+          "protocol_id": "valid_minutes_20h_min4",
+          "label": "At least 20 hours valid data on at least 4 days",
+          "expression": "PAXVMD >= 1200",
+          "min_days": "4",
+          "review_decision": "accept",
+          "approved_status": "approved_24h_completeness_rule",
+          "classification_type": "24-hour completeness rule",
+          "interpretation_limit": "Approved as a data completeness/sensitivity rule only; not an active/inactive, MVPA, sedentary, or clinical physical activity classification."
+        },
+        {
+          "protocol_id": "wake_wear_10h_min4",
+          "label": "At least 10 hours valid wake wear on at least 4 days",
+          "expression": "PAXWWMD >= 600",
+          "min_days": "4",
+          "review_decision": "accept",
+          "approved_status": "approved_completeness_rule",
+          "classification_type": "candidate completeness rule",
+          "interpretation_limit": "Approved as a data completeness/sensitivity rule only; not an active/inactive, MVPA, sedentary, or clinical physical activity classification."
+        },
+        {
+          "protocol_id": "wake_wear_12h_min4",
+          "label": "At least 12 hours valid wake wear on at least 4 days",
+          "expression": "PAXWWMD >= 720",
+          "min_days": "4",
+          "review_decision": "accept",
+          "approved_status": "approved_sensitivity_rule",
+          "classification_type": "sensitivity completeness rule",
+          "interpretation_limit": "Approved as a data completeness/sensitivity rule only; not an active/inactive, MVPA, sedentary, or clinical physical activity classification."
+        }
+      ]
+    },
+    {
+      "query": "queries/competency/cq3_pending_cancer_type_mappings.rq",
+      "variables": [
+        "participant_id",
+        "diagnosis",
+        "source_code",
+        "source_label",
+        "mapping_status",
+        "candidate_vocabulary",
+        "candidate_label"
+      ],
+      "row_count": 25,
+      "sample_rows": [
+        {
+          "participant_id": "62813",
+          "diagnosis": "https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/62813/A",
+          "source_code": "24",
+          "source_label": "Lymphoma/ Hodgkin's disease",
+          "mapping_status": "source label ready; NCIt pending",
+          "candidate_vocabulary": "NCIt",
+          "candidate_label": "Lymphoma or Hodgkin disease"
+        },
+        {
+          "participant_id": "62813",
+          "diagnosis": "https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/62813/B",
+          "source_code": "10",
+          "source_label": "Bladder",
+          "mapping_status": "source label ready; NCIt pending",
+          "candidate_vocabulary": "NCIt",
+          "candidate_label": "Bladder cancer"
+        },
+        {
+          "participant_id": "62948",
+          "diagnosis": "https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/62948/A",
+          "source_code": "12",
+          "source_label": "Bone",
+          "mapping_status": "source label ready; NCIt pending",
+          "candidate_vocabulary": "NCIt",
+          "candidate_label": "Bone cancer"
+        },
+        {
+          "participant_id": "62948",
+          "diagnosis": "https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/62948/B",
+          "source_code": "30",
+          "source_label": "Prostate",
+          "mapping_status": "source label ready; NCIt pending",
+          "candidate_vocabulary": "NCIt",
+          "candidate_label": "Prostate cancer"
+        },
+        {
+          "participant_id": "62948",
+          "diagnosis": "https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/62948/C",
+          "source_code": "25",
+          "source_label": "Melanoma",
+          "mapping_status": "source label ready; NCIt pending",
+          "candidate_vocabulary": "NCIt",
+          "candidate_label": "Melanoma"
+        }
+      ]
+    },
+    {
+      "query": "queries/competency/cq4_daily_feature_provenance.rq",
+      "variables": [
+        "participant_id",
+        "day",
+        "day_index",
+        "daily_mims",
+        "feature_set",
+        "peak30_mims",
+        "generated_by",
+        "derived_from"
+      ],
+      "row_count": 60,
+      "sample_rows": [
+        {
+          "participant_id": "62813",
+          "day": "https://w3id.org/cskg/resource/pam-day/2011-2012/62813/1",
+          "day_index": "1",
+          "daily_mims": "2149.247",
+          "feature_set": "https://w3id.org/cskg/resource/feature-set/2011-2012/62813/1",
+          "peak30_mims": "482.007",
+          "generated_by": "https://w3id.org/cskg/resource/software-execution/build-pilot-kg",
+          "derived_from": "https://w3id.org/cskg/resource/source-table/pam_minutes.csv"
+        },
+        {
+          "participant_id": "62813",
+          "day": "https://w3id.org/cskg/resource/pam-day/2011-2012/62813/2",
+          "day_index": "2",
+          "daily_mims": "7299.053",
+          "feature_set": "https://w3id.org/cskg/resource/feature-set/2011-2012/62813/2",
+          "peak30_mims": "838.109",
+          "generated_by": "https://w3id.org/cskg/resource/software-execution/build-pilot-kg",
+          "derived_from": "https://w3id.org/cskg/resource/source-table/pam_minutes.csv"
+        },
+        {
+          "participant_id": "62813",
+          "day": "https://w3id.org/cskg/resource/pam-day/2011-2012/62813/3",
+          "day_index": "3",
+          "daily_mims": "8530.23",
+          "feature_set": "https://w3id.org/cskg/resource/feature-set/2011-2012/62813/3",
+          "peak30_mims": "775.151",
+          "generated_by": "https://w3id.org/cskg/resource/software-execution/build-pilot-kg",
+          "derived_from": "https://w3id.org/cskg/resource/source-table/pam_minutes.csv"
+        },
+        {
+          "participant_id": "62948",
+          "day": "https://w3id.org/cskg/resource/pam-day/2011-2012/62948/1",
+          "day_index": "1",
+          "daily_mims": "3364.758",
+          "feature_set": "https://w3id.org/cskg/resource/feature-set/2011-2012/62948/1",
+          "peak30_mims": "513.815",
+          "generated_by": "https://w3id.org/cskg/resource/software-execution/build-pilot-kg",
+          "derived_from": "https://w3id.org/cskg/resource/source-table/pam_minutes.csv"
+        },
+        {
+          "participant_id": "62948",
+          "day": "https://w3id.org/cskg/resource/pam-day/2011-2012/62948/2",
+          "day_index": "2",
+          "daily_mims": "7500.671",
+          "feature_set": "https://w3id.org/cskg/resource/feature-set/2011-2012/62948/2",
+          "peak30_mims": "612.619",
+          "generated_by": "https://w3id.org/cskg/resource/software-execution/build-pilot-kg",
+          "derived_from": "https://w3id.org/cskg/resource/source-table/pam_minutes.csv"
+        }
+      ]
+    },
+    {
+      "query": "queries/competency/cq5_minute_measurement_context.rq",
+      "variables": [
+        "day",
+        "observation",
+        "position_seconds",
+        "epoch_seconds",
+        "minute_mims",
+        "wear_state_code",
+        "wear_state_label",
+        "quality_score",
+        "quality_label"
+      ],
+      "row_count": 300,
+      "sample_rows": [
+        {
+          "day": "https://w3id.org/cskg/resource/pam-day/2011-2012/62813/1",
+          "observation": "https://w3id.org/cskg/resource/pam-minute/2011-2012/62813/1/5.397605346934028e-79",
+          "position_seconds": "0",
+          "epoch_seconds": "60",
+          "minute_mims": "20.325",
+          "wear_state_code": "1",
+          "wear_state_label": "Wake wear",
+          "quality_score": "0",
+          "quality_label": "No data quality flags occurred"
+        },
+        {
+          "day": "https://w3id.org/cskg/resource/pam-day/2011-2012/62813/1",
+          "observation": "https://w3id.org/cskg/resource/pam-minute/2011-2012/62813/1/4800",
+          "position_seconds": "4800",
+          "epoch_seconds": "60",
+          "minute_mims": "13.395",
+          "wear_state_code": "1",
+          "wear_state_label": "Wake wear",
+          "quality_score": "0",
+          "quality_label": "No data quality flags occurred"
+        },
+        {
+          "day": "https://w3id.org/cskg/resource/pam-day/2011-2012/62813/1",
+          "observation": "https://w3id.org/cskg/resource/pam-minute/2011-2012/62813/1/9600",
+          "position_seconds": "9600",
+          "epoch_seconds": "60",
+          "minute_mims": "15.23",
+          "wear_state_code": "1",
+          "wear_state_label": "Wake wear",
+          "quality_score": "0",
+          "quality_label": "No data quality flags occurred"
+        },
+        {
+          "day": "https://w3id.org/cskg/resource/pam-day/2011-2012/62813/1",
+          "observation": "https://w3id.org/cskg/resource/pam-minute/2011-2012/62813/1/14400",
+          "position_seconds": "14400",
+          "epoch_seconds": "60",
+          "minute_mims": "7.783",
+          "wear_state_code": "1",
+          "wear_state_label": "Wake wear",
+          "quality_score": "0",
+          "quality_label": "No data quality flags occurred"
+        },
+        {
+          "day": "https://w3id.org/cskg/resource/pam-day/2011-2012/62813/1",
+          "observation": "https://w3id.org/cskg/resource/pam-minute/2011-2012/62813/1/19200",
+          "position_seconds": "19200",
+          "epoch_seconds": "60",
+          "minute_mims": "11.209",
+          "wear_state_code": "1",
+          "wear_state_label": "Wake wear",
+          "quality_score": "0",
+          "quality_label": "No data quality flags occurred"
+        }
+      ]
+    },
+    {
+      "query": "queries/competency/cq6_self_reported_cancer_history.rq",
+      "variables": [
+        "participant",
+        "participant_id",
+        "cancer_history_code",
+        "cancer_history_label",
+        "source"
+      ],
+      "row_count": 20,
+      "sample_rows": [
+        {
+          "participant": "https://w3id.org/cskg/resource/participant/2011-2012/62813",
+          "participant_id": "62813",
+          "cancer_history_code": "1",
+          "cancer_history_label": "Yes",
+          "source": "https://w3id.org/cskg/resource/source-table/participants.csv"
+        },
+        {
+          "participant": "https://w3id.org/cskg/resource/participant/2011-2012/62948",
+          "participant_id": "62948",
+          "cancer_history_code": "1",
+          "cancer_history_label": "Yes",
+          "source": "https://w3id.org/cskg/resource/source-table/participants.csv"
+        },
+        {
+          "participant": "https://w3id.org/cskg/resource/participant/2011-2012/63017",
+          "participant_id": "63017",
+          "cancer_history_code": "1",
+          "cancer_history_label": "Yes",
+          "source": "https://w3id.org/cskg/resource/source-table/participants.csv"
+        },
+        {
+          "participant": "https://w3id.org/cskg/resource/participant/2011-2012/63198",
+          "participant_id": "63198",
+          "cancer_history_code": "1",
+          "cancer_history_label": "Yes",
+          "source": "https://w3id.org/cskg/resource/source-table/participants.csv"
+        },
+        {
+          "participant": "https://w3id.org/cskg/resource/participant/2011-2012/63267",
+          "participant_id": "63267",
+          "cancer_history_code": "1",
+          "cancer_history_label": "Yes",
+          "source": "https://w3id.org/cskg/resource/source-table/participants.csv"
+        }
+      ]
+    },
+    {
+      "query": "queries/competency/cq7_harmonisation_compatibility.rq",
+      "variables": [
+        "entity",
+        "entityType",
+        "sourceId",
+        "label",
+        "constructOrDefinitionType",
+        "compatibilityStatus",
+        "interpretationLimit"
+      ],
+      "row_count": 13,
+      "sample_rows": [
+        {
+          "entity": "https://w3id.org/cskg/resource/harmonisation-mapping/nhanes_2003_2006_hip_actigraph_pam/PAXINTEN",
+          "entityType": "source variable mapping",
+          "sourceId": "nhanes_2003_2006_hip_actigraph_pam",
+          "label": "ActiGraph AM-7164 hip-worn activity counts per 1-minute epoch",
+          "constructOrDefinitionType": "daily movement volume",
+          "compatibilityStatus": "broad construct only; numeric equivalence blocked",
+          "interpretationLimit": "Do not convert hip ActiGraph counts to wrist MIMS. Do not treat cut-points, MVPA, sedentary time, or total volume as numerically equivalent without protocol-specific validation."
+        },
+        {
+          "entity": "https://w3id.org/cskg/resource/harmonisation-mapping/nhanes_2005_2006_hip_actigraph_pam/PAXSTEP",
+          "entityType": "source variable mapping",
+          "sourceId": "nhanes_2005_2006_hip_actigraph_pam",
+          "label": "ActiGraph AM-7164 hip-worn step count per 1-minute epoch",
+          "constructOrDefinitionType": "daily ambulatory volume",
+          "compatibilityStatus": "source-specific step metric; no conversion from/to MIMS",
+          "interpretationLimit": "Steps can be summarized as a real ambulatory metric, but cannot be inferred from NHANES 2011-2014 wrist MIMS and cannot validate MIMS-to-steps conversion."
+        },
+        {
+          "entity": "https://w3id.org/cskg/resource/harmonised-definition/nhanes_wrist_mims_wake_wear_10h_min4",
+          "entityType": "activity definition",
+          "sourceId": "nhanes_2011_2014_wrist_mims",
+          "label": "nhanes_wrist_mims_wake_wear_10h_min4",
+          "constructOrDefinitionType": "valid-day completeness",
+          "compatibilityStatus": "compatible after protocol abstraction",
+          "interpretationLimit": "No MVPA, sedentary, or clinical activity classification."
+        },
+        {
+          "entity": "https://w3id.org/cskg/resource/harmonisation-mapping/nhanes_2011_2014_wrist_mims/PAXMTSD",
+          "entityType": "source variable mapping",
+          "sourceId": "nhanes_2011_2014_wrist_mims",
+          "label": "Daily total MIMS",
+          "constructOrDefinitionType": "daily movement volume",
+          "compatibilityStatus": "source-specific metric; not directly convertible",
+          "interpretationLimit": "Do not apply hip counts/minute intensity thresholds to MIMS."
+        },
+        {
+          "entity": "https://w3id.org/cskg/resource/harmonisation-mapping/nhanes_2011_2014_wrist_mims/PAXVMD",
+          "entityType": "source variable mapping",
+          "sourceId": "nhanes_2011_2014_wrist_mims",
+          "label": "Valid minutes",
+          "constructOrDefinitionType": "valid data completeness",
+          "compatibilityStatus": "compatible after protocol abstraction",
+          "interpretationLimit": "Does not encode intensity."
+        }
+      ]
+    },
+    {
+      "query": "queries/competency/cq8_protocol_citation_provenance.rq",
+      "variables": [
+        "protocol_id",
+        "citationRole",
+        "supportLevel",
+        "title",
+        "sourceUrl",
+        "citedClaim",
+        "interpretationLimit"
+      ],
+      "row_count": 12,
+      "sample_rows": [
+        {
+          "protocol_id": "valid_minutes_20h_min4",
+          "citationRole": "literature_context",
+          "supportLevel": "context_only_not_threshold_validation",
+          "title": "Minute-level step counts and physical activity data from NHANES 2011-2014",
+          "sourceUrl": "https://physionet.org/content/minute-level-step-count-nhanes/1.0.0/",
+          "citedClaim": "The derived dataset documentation summarizes NHANES 2011-2014 wrist accelerometry as non-dominant wrist GT3X+ data with MIMS, wear predictions, and quality flags.",
+          "interpretationLimit": "Use only as context for representing a 24-hour completeness sensitivity rule."
+        },
+        {
+          "protocol_id": "valid_minutes_20h_min4",
+          "citationRole": "project_review_decision",
+          "supportLevel": "local_project_review_support",
+          "title": "Project protocol review sheet",
+          "sourceUrl": "docs/protocols/protocol_review_sheet.csv",
+          "citedClaim": "Protocol status: approved_24h_completeness_rule. Reviewer comment: Accepted by project lead as 24-hour data completeness rule using total valid minutes; not an active/inactive, MVPA, sedentary, or clinical physical activity classification.",
+          "interpretationLimit": "Do not interpret as MVPA, sedentary, active/inactive, or clinical physical-activity classification."
+        },
+        {
+          "protocol_id": "valid_minutes_20h_min4",
+          "citationRole": "source_variable_definition",
+          "supportLevel": "direct_source_variable_support",
+          "title": "NHANES 2011-2012 Physical Activity Monitor documentation",
+          "sourceUrl": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PAXMIN_G.htm",
+          "citedClaim": "NHANES day summary variable PAXVMD represents total valid minutes in the day.",
+          "interpretationLimit": "Use PAXVMD only as a valid minutes completeness input in this project."
+        },
+        {
+          "protocol_id": "valid_minutes_20h_min4",
+          "citationRole": "source_variable_definition",
+          "supportLevel": "direct_source_variable_support",
+          "title": "NHANES 2013-2014 Physical Activity Monitor documentation",
+          "sourceUrl": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/PAXMIN_H.htm",
+          "citedClaim": "NHANES day summary variable PAXVMD represents total valid minutes in the day.",
+          "interpretationLimit": "Use PAXVMD only as a valid minutes completeness input in this project."
+        },
+        {
+          "protocol_id": "wake_wear_10h_min4",
+          "citationRole": "literature_context",
+          "supportLevel": "context_only_not_wrist_mims_validation",
+          "title": "Catalog of NHANES accelerometer rules, variables, and definitions",
+          "sourceUrl": "https://www.cdc.gov/pcd/issues/2012/11_0332.htm",
+          "citedClaim": "The review reports that 10 or more hours of wear time and four or more valid days were commonly used in NHANES 2003-2006 accelerometer analyses.",
+          "interpretationLimit": "Use only to justify why 10h/min4 is a reasonable sensitivity/completeness candidate to represent and test."
+        }
+      ]
+    },
+    {
+      "query": "queries/competency/cq9_independent_pam_source_validation.rq",
+      "variables": [
+        "summary",
+        "sourceId",
+        "cycle",
+        "sourceParticipantIdentifier",
+        "day",
+        "metric",
+        "validWearMinutes",
+        "dailyAxisCounts",
+        "dailySteps",
+        "interpretationLimit"
+      ],
+      "row_count": 20,
+      "sample_rows": [
+        {
+          "summary": "https://w3id.org/cskg/resource/independent-pam-day/2003-2004/21015/1",
+          "sourceId": "nhanes_2003_2006_hip_actigraph_pam",
+          "cycle": "2003-2004",
+          "sourceParticipantIdentifier": "21015",
+          "day": "1",
+          "metric": "ActiGraph activity counts/minute",
+          "validWearMinutes": "1440",
+          "dailyAxisCounts": "151834",
+          "dailySteps": null,
+          "interpretationLimit": "Independent hip-worn ActiGraph PAM source. Counts/minute and steps are source-specific metrics; do not convert to wrist MIMS, MVPA, sedentary time, active/inactive status, or clinical physical-activity status."
+        },
+        {
+          "summary": "https://w3id.org/cskg/resource/independent-pam-day/2003-2004/21015/2",
+          "sourceId": "nhanes_2003_2006_hip_actigraph_pam",
+          "cycle": "2003-2004",
+          "sourceParticipantIdentifier": "21015",
+          "day": "2",
+          "metric": "ActiGraph activity counts/minute",
+          "validWearMinutes": "1440",
+          "dailyAxisCounts": "71376",
+          "dailySteps": null,
+          "interpretationLimit": "Independent hip-worn ActiGraph PAM source. Counts/minute and steps are source-specific metrics; do not convert to wrist MIMS, MVPA, sedentary time, active/inactive status, or clinical physical-activity status."
+        },
+        {
+          "summary": "https://w3id.org/cskg/resource/independent-pam-day/2003-2004/21015/3",
+          "sourceId": "nhanes_2003_2006_hip_actigraph_pam",
+          "cycle": "2003-2004",
+          "sourceParticipantIdentifier": "21015",
+          "day": "3",
+          "metric": "ActiGraph activity counts/minute",
+          "validWearMinutes": "1440",
+          "dailyAxisCounts": "161950",
+          "dailySteps": null,
+          "interpretationLimit": "Independent hip-worn ActiGraph PAM source. Counts/minute and steps are source-specific metrics; do not convert to wrist MIMS, MVPA, sedentary time, active/inactive status, or clinical physical-activity status."
+        },
+        {
+          "summary": "https://w3id.org/cskg/resource/independent-pam-day/2003-2004/21015/4",
+          "sourceId": "nhanes_2003_2006_hip_actigraph_pam",
+          "cycle": "2003-2004",
+          "sourceParticipantIdentifier": "21015",
+          "day": "4",
+          "metric": "ActiGraph activity counts/minute",
+          "validWearMinutes": "1440",
+          "dailyAxisCounts": "84317",
+          "dailySteps": null,
+          "interpretationLimit": "Independent hip-worn ActiGraph PAM source. Counts/minute and steps are source-specific metrics; do not convert to wrist MIMS, MVPA, sedentary time, active/inactive status, or clinical physical-activity status."
+        },
+        {
+          "summary": "https://w3id.org/cskg/resource/independent-pam-day/2003-2004/21015/5",
+          "sourceId": "nhanes_2003_2006_hip_actigraph_pam",
+          "cycle": "2003-2004",
+          "sourceParticipantIdentifier": "21015",
+          "day": "5",
+          "metric": "ActiGraph activity counts/minute",
+          "validWearMinutes": "1440",
+          "dailyAxisCounts": "103342",
+          "dailySteps": null,
+          "interpretationLimit": "Independent hip-worn ActiGraph PAM source. Counts/minute and steps are source-specific metrics; do not convert to wrist MIMS, MVPA, sedentary time, active/inactive status, or clinical physical-activity status."
+        }
+      ]
+    }
+  ]
+}

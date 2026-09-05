@@ -1,0 +1,31 @@
+{
+  "created_at_utc": "2026-08-23T17:50:23.988591+00:00",
+  "review_rows": 33,
+  "decision_counts": {
+    "<blank>": 2,
+    "accept": 16,
+    "accept_with_note": 9,
+    "needs_more_information": 2,
+    "reject": 2,
+    "revise": 2
+  },
+  "approved_relation_counts": {
+    "<blank>": 2,
+    "broadMatch": 13,
+    "closeMatch": 14,
+    "notMapped": 1,
+    "reviewNeeded": 3
+  },
+  "assertion_status_counts": {
+    "not_asserted_needs_more_information_or_revision": 4,
+    "not_asserted_no_completed_approval": 2,
+    "not_asserted_rejected_or_not_mapped": 2,
+    "reviewed_qualified_mapping_asserted": 25
+  },
+  "graph_assertion_allowed_rows": 25,
+  "not_asserted_rows": 8,
+  "completed_review_sheet": "docs/review/ncit_cancer_type_review_sheet_completed.csv",
+  "approved_mapping": "data/processed/approved_cancer_type_ncit_mapping.csv",
+  "evidence_dir": "docs/review/evidence",
+  "domain_ontology_review_completed_by_these_files": false
+}

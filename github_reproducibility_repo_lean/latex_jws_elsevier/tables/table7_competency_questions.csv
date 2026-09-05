@@ -1,0 +1,10 @@
+Query,Rows returned,Reviewer risk addressed,Source query
+CQ1_PROTOCOL_DISCORDANCE,40,Protocol choice changes inclusion,queries/competency/cq1_protocol_discordance.rq
+CQ2_PROTOCOL_REVIEW_STATUS,3,Protocols are reviewed completeness/sensitivity rules,queries/competency/cq2_protocol_review_status.rq
+CQ3_PENDING_CANCER_TYPE_MAPPINGS,25,NCIt candidates are not overasserted,queries/competency/cq3_pending_cancer_type_mappings.rq
+CQ4_DAILY_FEATURE_PROVENANCE,60,Movement features expose provenance,queries/competency/cq4_daily_feature_provenance.rq
+CQ5_MINUTE_MEASUREMENT_CONTEXT,300,MIMS/wear-state/quality context is queryable,queries/competency/cq5_minute_measurement_context.rq
+CQ6_SELF_REPORTED_CANCER_HISTORY,20,Cohort is not overclaimed as clinically verified survivorship,queries/competency/cq6_self_reported_cancer_history.rq
+CQ7_HARMONISATION_COMPATIBILITY,13,Compatibility and incompatibility are queryable,queries/competency/cq7_harmonisation_compatibility.rq
+CQ8_PROTOCOL_CITATION_PROVENANCE,12,Protocol evidence and support levels are queryable,queries/competency/cq8_protocol_citation_provenance.rq
+CQ9_INDEPENDENT_PAM_SOURCE_VALIDATION,20,Independent PAM source evidence and non-conversion limits are queryable,queries/competency/cq9_independent_pam_source_validation.rq

@@ -1,0 +1,62 @@
+{
+  "created_at_utc": "2026-08-11T07:05:47.834165+00:00",
+  "summary": "data/processed/protocol_outcome_sensitivity_summary.csv",
+  "participant_metrics": "data/processed/protocol_outcome_sensitivity_participants.csv",
+  "pairwise_inclusion": "data/processed/protocol_pairwise_inclusion_comparison.csv",
+  "protocols": [
+    "wake_wear_10h_min4",
+    "wake_wear_12h_min4",
+    "valid_minutes_20h_min4"
+  ],
+  "protocol_count": 3,
+  "interpretation_limit": "MIMS values are movement-summary metrics only; no MVPA, sedentary, active/inactive, or clinical physical activity classification is made.",
+  "headline": {
+    "wake_wear_10h_min4": {
+      "eligible_participants": 807,
+      "eligible_percent": 91.91344,
+      "participant_mean_daily_mims_mean": 11567.603003,
+      "valid_day_rows": 5553
+    },
+    "wake_wear_12h_min4": {
+      "eligible_participants": 722,
+      "eligible_percent": 82.232346,
+      "participant_mean_daily_mims_mean": 12201.537613,
+      "valid_day_rows": 4824
+    },
+    "valid_minutes_20h_min4": {
+      "eligible_participants": 862,
+      "eligible_percent": 98.177677,
+      "participant_mean_daily_mims_mean": 10827.114119,
+      "valid_day_rows": 6111
+    }
+  },
+  "pairwise_discordance": [
+    {
+      "left_protocol": "wake_wear_10h_min4",
+      "right_protocol": "wake_wear_12h_min4",
+      "both_eligible": 722,
+      "left_only": 85,
+      "right_only": 0,
+      "neither": 71,
+      "discordant_participants": 85
+    },
+    {
+      "left_protocol": "wake_wear_10h_min4",
+      "right_protocol": "valid_minutes_20h_min4",
+      "both_eligible": 806,
+      "left_only": 1,
+      "right_only": 56,
+      "neither": 15,
+      "discordant_participants": 57
+    },
+    {
+      "left_protocol": "wake_wear_12h_min4",
+      "right_protocol": "valid_minutes_20h_min4",
+      "both_eligible": 721,
+      "left_only": 1,
+      "right_only": 141,
+      "neither": 15,
+      "discordant_participants": 142
+    }
+  ]
+}

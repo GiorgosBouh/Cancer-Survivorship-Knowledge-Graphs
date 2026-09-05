@@ -1,0 +1,32 @@
+{
+  "created_at_utc": "2026-08-11T15:58:57.783408+00:00",
+  "source_id": "physionet_nhanes_steps_activity_counts_v1_0_2",
+  "selection_status": "metadata_downloaded_overlap_checked",
+  "physionet_subjects_total": 19931,
+  "project_cancer_history_participants": 1035,
+  "project_rows": 1035,
+  "project_participants_present_in_physionet": 1035,
+  "project_participants_missing_from_physionet": 0,
+  "overall_overlap_percent": 100.0,
+  "by_cycle": [
+    {
+      "cycle": "2011-2012",
+      "project_cancer_history_participants": 488,
+      "present_in_physionet": 488,
+      "overlap_percent": 100.0
+    },
+    {
+      "cycle": "2013-2014",
+      "project_cancer_history_participants": 547,
+      "present_in_physionet": 547,
+      "overlap_percent": 100.0
+    }
+  ],
+  "outputs": {
+    "participant_overlap": "data/processed/physionet_source_cohort_overlap.csv",
+    "overlap_by_cycle": "data/processed/physionet_source_cohort_overlap_by_cycle.csv",
+    "missing_project_participants": "data/processed/physionet_source_missing_project_participants.csv",
+    "documentation": "docs/physionet_real_source_overlap.md"
+  },
+  "next_step": "Download one compressed metric file, preferably csv/nhanes_1440_AC.csv.xz or csv/nhanes_1440_actisteps.csv.xz, and build cohort-restricted daily summaries."
+}

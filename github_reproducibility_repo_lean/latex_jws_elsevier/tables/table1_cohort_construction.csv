@@ -1,0 +1,7 @@
+Stage,NHANES 2011-2012,NHANES 2013-2014,Total
+All NHANES participants,9756,10175,19931
+Age 20 or older,5560,5769,11329
+"Self-reported cancer history, MCQ220 = 1",488,547,1035
+Physical activity monitor header available,462,530,992
+Daily physical activity monitor summary available,406,472,878
+Minute-level physical activity monitor data available,406,472,878

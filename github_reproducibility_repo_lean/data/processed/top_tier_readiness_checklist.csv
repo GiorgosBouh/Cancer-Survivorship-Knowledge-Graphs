@@ -1,0 +1,12 @@
+criterion,status,evidence,top_tier_action
+Reproducible NHANES data foundation,complete,"cohort, day, minute, feature, protocol, manifest, and quality artifacts exist",keep one-command rebuild documented
+Standards-compliant KG validation,complete,pySHACL conforms=True; failed_policy_checks=0,use --require-pyshacl as mandatory validation gate
+Protocol sensitivity evaluation,complete,protocol-discordance risk register quantifies participant inclusion changes,make protocol discordance a main result
+Naive-vs-semantic harmonisation evaluation,complete,"semantic risk registers and competency queries now cover synthetic, PhysioNet, and independent PAM sources; CQ9 exposes PAM source safeguards",keep interpretation limits prominent in manuscript tables and figures
+Second real accelerometry data source,complete,PhysioNet v1.0.2 ActiLife steps integrated for 878 participants as a real derived same-cohort source,"keep wording precise: real derived same-cohort source, not independent validation"
+Independent public accelerometry source,complete,NHANES 2003-2006 PAM integrated: participants_with_paxraw=768; daily_rows=5367; retained_minute_rows=7724170; kg_nodes=20,use as the main independent-source harmonisation validation; do not claim independent clinical survivorship cohort
+NCIt cancer-type expert review,complete_with_caveat,NCIt review status=review_completed_qualified_assertions_allowed; assertion_count=19,use reviewed mappings only as qualified self-report code mappings; keep clinical caveats visible
+External ontology/domain expert review,prepared_pending_review,review packet prepared: items=6; status=prepared_pending_external_review,obtain completed external reviewer decisions before claiming independent expert approval
+Public reproducibility archive,prepared_pending_deposit,reproducibility archive plan generated; no DOI/archive deposit yet,"prepare Zenodo/OSF archive with code, generated non-sensitive outputs, and environment lock"
+Reporting checklists,partial_complete,STROBE-style and FAIR/resource checklist draft generated,complete target-journal-specific reporting checklist during manuscript finalization
+Journal-specific manuscript package,partial_complete,manuscript tables and figure inputs generated,create target-journal cover story and final figures

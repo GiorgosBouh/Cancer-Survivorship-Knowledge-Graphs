@@ -1,0 +1,6 @@
+{
+  "engine": "pyshacl",
+  "available": true,
+  "conforms": true,
+  "message": "Validation Report\nConforms: True\n"
+}

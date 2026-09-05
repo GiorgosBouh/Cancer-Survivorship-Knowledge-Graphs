@@ -1,0 +1,26 @@
+PREFIX cskg: <https://w3id.org/cskg/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+
+SELECT ?entity ?entityType ?sourceId ?label ?constructOrDefinitionType ?compatibilityStatus ?interpretationLimit
+WHERE {
+  {
+    ?entity a cskg:HarmonisedSourceVariableMapping ;
+            cskg:sourceId ?sourceId ;
+            cskg:sourceLabel ?label ;
+            cskg:harmonisedConstruct ?constructOrDefinitionType ;
+            cskg:compatibilityStatus ?compatibilityStatus ;
+            cskg:interpretationLimit ?interpretationLimit .
+    BIND("source variable mapping" AS ?entityType)
+  }
+  UNION
+  {
+    ?entity a cskg:HarmonisedActivityDefinition ;
+            cskg:sourceId ?sourceId ;
+            dct:identifier ?label ;
+            cskg:definitionType ?constructOrDefinitionType ;
+            cskg:compatibilityStatus ?compatibilityStatus ;
+            cskg:interpretationLimit ?interpretationLimit .
+    BIND("activity definition" AS ?entityType)
+  }
+}
+ORDER BY ?sourceId ?entityType ?label

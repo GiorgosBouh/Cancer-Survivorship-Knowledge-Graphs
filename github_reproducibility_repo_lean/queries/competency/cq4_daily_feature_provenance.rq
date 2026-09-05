@@ -1,0 +1,17 @@
+PREFIX cskg: <https://w3id.org/cskg/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+SELECT ?participant_id ?day ?day_index ?daily_mims ?feature_set ?peak30_mims ?generated_by ?derived_from
+WHERE {
+  ?participant a cskg:Participant ;
+    dct:identifier ?participant_id ;
+    cskg:hasDailyMovementSummary ?day .
+  ?day cskg:monitorDayIndex ?day_index ;
+    cskg:dailyTotalMIMS ?daily_mims ;
+    cskg:hasDerivedFeatureSet ?feature_set .
+  ?feature_set cskg:peak30ValidMIMS ?peak30_mims ;
+    prov:wasGeneratedBy ?generated_by ;
+    prov:wasDerivedFrom ?derived_from .
+}
+ORDER BY ?participant_id ?day_index

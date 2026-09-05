@@ -1,0 +1,202 @@
+{
+  "created_at_utc": "2026-09-05T19:51:18.701539+00:00",
+  "graph": "data/processed/pilot_kg.ttl",
+  "shapes": "shapes/pilot_kg_shapes.ttl",
+  "engine": "local-required-property-validator-with-optional-pyshacl",
+  "note": "The local validator mirrors required-property checks. Use --require-pyshacl for standards-compliant SHACL gating.",
+  "standard_shacl": {
+    "engine": "pyshacl",
+    "available": true,
+    "conforms": true,
+    "message": "Validation Report\nConforms: True\n"
+  },
+  "require_pyshacl": true,
+  "passed": true,
+  "triple_count": 9324,
+  "shape_summary": [
+    {
+      "shape": "ParticipantShape",
+      "target_class": "cskg:Participant",
+      "target_nodes": 20,
+      "required_properties": 8,
+      "checks": 160,
+      "failures": 0
+    },
+    {
+      "shape": "CancerHistoryAssertionShape",
+      "target_class": "cskg:CancerHistoryAssertion",
+      "target_nodes": 20,
+      "required_properties": 4,
+      "checks": 80,
+      "failures": 0
+    },
+    {
+      "shape": "CancerDiagnosisShape",
+      "target_class": "cskg:CancerDiagnosis",
+      "target_nodes": 25,
+      "required_properties": 3,
+      "checks": 75,
+      "failures": 0
+    },
+    {
+      "shape": "SensorShape",
+      "target_class": "sosa:Sensor",
+      "target_nodes": 20,
+      "required_properties": 3,
+      "checks": 60,
+      "failures": 0
+    },
+    {
+      "shape": "DailyMovementSummaryShape",
+      "target_class": "cskg:DailyMovementSummary",
+      "target_nodes": 60,
+      "required_properties": 11,
+      "checks": 660,
+      "failures": 0
+    },
+    {
+      "shape": "MinuteObservationShape",
+      "target_class": "sosa:Observation",
+      "target_nodes": 300,
+      "required_properties": 6,
+      "checks": 1800,
+      "failures": 0
+    },
+    {
+      "shape": "DerivedMovementFeatureSetShape",
+      "target_class": "cskg:DerivedMovementFeatureSet",
+      "target_nodes": 60,
+      "required_properties": 9,
+      "checks": 540,
+      "failures": 0
+    },
+    {
+      "shape": "ProcessingProtocolShape",
+      "target_class": "cskg:ProcessingProtocol",
+      "target_nodes": 3,
+      "required_properties": 7,
+      "checks": 21,
+      "failures": 0
+    },
+    {
+      "shape": "ProtocolApplicationResultShape",
+      "target_class": "cskg:ProtocolApplicationResult",
+      "target_nodes": 60,
+      "required_properties": 8,
+      "checks": 480,
+      "failures": 0
+    },
+    {
+      "shape": "ProtocolCitationEvidenceShape",
+      "target_class": "cskg:ProtocolCitationEvidence",
+      "target_nodes": 12,
+      "required_properties": 10,
+      "checks": 120,
+      "failures": 0
+    },
+    {
+      "shape": "ActivityDataSourceShape",
+      "target_class": "cskg:ActivityDataSource",
+      "target_nodes": 4,
+      "required_properties": 6,
+      "checks": 24,
+      "failures": 0
+    },
+    {
+      "shape": "HarmonisedSourceVariableMappingShape",
+      "target_class": "cskg:HarmonisedSourceVariableMapping",
+      "target_nodes": 9,
+      "required_properties": 7,
+      "checks": 63,
+      "failures": 0
+    },
+    {
+      "shape": "HarmonisedActivityDefinitionShape",
+      "target_class": "cskg:HarmonisedActivityDefinition",
+      "target_nodes": 4,
+      "required_properties": 7,
+      "checks": 28,
+      "failures": 0
+    },
+    {
+      "shape": "SyntheticDailyActivitySummaryShape",
+      "target_class": "cskg:SyntheticDailyActivitySummary",
+      "target_nodes": 60,
+      "required_properties": 11,
+      "checks": 660,
+      "failures": 0
+    },
+    {
+      "shape": "IndependentPAMDailySummaryShape",
+      "target_class": "cskg:IndependentPAMDailySummary",
+      "target_nodes": 20,
+      "required_properties": 15,
+      "checks": 300,
+      "failures": 0
+    }
+  ],
+  "policy_checks": [
+    {
+      "guard": "NCItReviewPendingGuard",
+      "passed": true,
+      "status": "review_completed_qualified_assertions_allowed",
+      "assertion_count": 19,
+      "message": "NCIt review is not pending; guard did not block NCIt assertions.",
+      "examples": [
+        {
+          "subject": "<https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/62813/B>",
+          "predicate": "cskg:reviewedNCItConcept",
+          "object": "<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C9334>"
+        },
+        {
+          "subject": "<https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/62948/A>",
+          "predicate": "cskg:reviewedNCItConcept",
+          "object": "<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C4016>"
+        },
+        {
+          "subject": "<https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/62948/B>",
+          "predicate": "cskg:reviewedNCItConcept",
+          "object": "<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C4863>"
+        },
+        {
+          "subject": "<https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/62948/C>",
+          "predicate": "cskg:reviewedNCItConcept",
+          "object": "<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C3224>"
+        },
+        {
+          "subject": "<https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/63198/A>",
+          "predicate": "cskg:reviewedNCItConcept",
+          "object": "<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C4910>"
+        },
+        {
+          "subject": "<https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/63267/A>",
+          "predicate": "cskg:reviewedNCItConcept",
+          "object": "<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C9382>"
+        },
+        {
+          "subject": "<https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/63360/A>",
+          "predicate": "cskg:reviewedNCItConcept",
+          "object": "<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C3552>"
+        },
+        {
+          "subject": "<https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/63566/A>",
+          "predicate": "cskg:reviewedNCItConcept",
+          "object": "<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C4872>"
+        },
+        {
+          "subject": "<https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/63806/A>",
+          "predicate": "cskg:reviewedNCItConcept",
+          "object": "<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C3224>"
+        },
+        {
+          "subject": "<https://w3id.org/cskg/resource/cancer-diagnosis/2011-2012/63858/A>",
+          "predicate": "cskg:reviewedNCItConcept",
+          "object": "<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C9039>"
+        }
+      ]
+    }
+  ],
+  "total_checks": 5071,
+  "failed_checks": 0,
+  "failed_policy_checks": 0
+}

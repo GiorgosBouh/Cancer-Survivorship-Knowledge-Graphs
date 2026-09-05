@@ -1,0 +1,101 @@
+{
+  "created_at_utc": "2026-09-05T19:51:18.020711+00:00",
+  "documentation": "docs/manuscript/manuscript_tables.md",
+  "output_count": 14,
+  "outputs": {
+    "Manuscript table: table1_cohort_construction": "docs/manuscript/table1_cohort_construction.csv",
+    "Manuscript table: table2_protocol_definitions": "docs/manuscript/table2_protocol_definitions.csv",
+    "Manuscript table: table3_protocol_outcome_sensitivity": "docs/manuscript/table3_protocol_outcome_sensitivity.csv",
+    "Manuscript table: table3_pairwise_protocol_discordance": "docs/manuscript/table3_pairwise_protocol_discordance.csv",
+    "Manuscript table: table4_kg_validation": "docs/manuscript/table4_kg_validation.csv",
+    "Manuscript table: table5_harmonisation_compatibility": "docs/manuscript/table5_harmonisation_compatibility.csv",
+    "Manuscript table: table5_harmonisation_status_counts": "docs/manuscript/table5_harmonisation_status_counts.csv",
+    "Manuscript table: table6_protocol_citation_evidence": "docs/manuscript/table6_protocol_citation_evidence.csv",
+    "Manuscript table: table6_protocol_citation_counts": "docs/manuscript/table6_protocol_citation_counts.csv",
+    "Manuscript table: table7_competency_questions": "docs/manuscript/table7_competency_questions.csv",
+    "Figure data: figure1_pipeline_counts": "docs/manuscript/figure1_pipeline_counts.csv",
+    "Figure data: figure2_harmonisation_status_counts": "docs/manuscript/figure2_harmonisation_status_counts.csv",
+    "Figure data: figure3_protocol_sensitivity": "docs/manuscript/figure3_protocol_sensitivity.csv",
+    "Human-readable manuscript table package": "docs/manuscript/manuscript_tables.md"
+  },
+  "tables": {
+    "table1_cohort_construction": {
+      "path": "docs/manuscript/table1_cohort_construction.csv",
+      "rows": 6,
+      "columns": 4
+    },
+    "table2_protocol_definitions": {
+      "path": "docs/manuscript/table2_protocol_definitions.csv",
+      "rows": 3,
+      "columns": 7
+    },
+    "table3_protocol_outcome_sensitivity": {
+      "path": "docs/manuscript/table3_protocol_outcome_sensitivity.csv",
+      "rows": 3,
+      "columns": 7
+    },
+    "table3_pairwise_protocol_discordance": {
+      "path": "docs/manuscript/table3_pairwise_protocol_discordance.csv",
+      "rows": 3,
+      "columns": 7
+    },
+    "table4_kg_validation": {
+      "path": "docs/manuscript/table4_kg_validation.csv",
+      "rows": 20,
+      "columns": 2
+    },
+    "table5_harmonisation_compatibility": {
+      "path": "docs/manuscript/table5_harmonisation_compatibility.csv",
+      "rows": 9,
+      "columns": 8
+    },
+    "table5_harmonisation_status_counts": {
+      "path": "docs/manuscript/table5_harmonisation_status_counts.csv",
+      "rows": 7,
+      "columns": 3
+    },
+    "table6_protocol_citation_evidence": {
+      "path": "docs/manuscript/table6_protocol_citation_evidence.csv",
+      "rows": 12,
+      "columns": 6
+    },
+    "table6_protocol_citation_counts": {
+      "path": "docs/manuscript/table6_protocol_citation_counts.csv",
+      "rows": 4,
+      "columns": 3
+    },
+    "table7_competency_questions": {
+      "path": "docs/manuscript/table7_competency_questions.csv",
+      "rows": 9,
+      "columns": 4
+    },
+    "figure1_pipeline_counts": {
+      "path": "docs/manuscript/figure1_pipeline_counts.csv",
+      "rows": 6,
+      "columns": 4
+    },
+    "figure2_harmonisation_status_counts": {
+      "path": "docs/manuscript/figure2_harmonisation_status_counts.csv",
+      "rows": 7,
+      "columns": 3
+    },
+    "figure3_protocol_sensitivity": {
+      "path": "docs/manuscript/figure3_protocol_sensitivity.csv",
+      "rows": 3,
+      "columns": 5
+    }
+  },
+  "claim_boundary": "MIMS values are movement-summary metrics only; no MVPA, sedentary, active/inactive, or clinical physical activity classification is made.",
+  "pyshacl_conforms": true,
+  "failed_checks": 0,
+  "failed_policy_checks": 0,
+  "ncit_review_status": "review_completed_qualified_assertions_allowed",
+  "ncit_assertion_count": 19,
+  "harmonisation_compatibility_counts": {
+    "source-specific metric; not directly convertible": 2,
+    "compatible after protocol abstraction": 3,
+    "not harmonisable with NHANES wrist MIMS in current KG": 2,
+    "broad construct only; numeric equivalence blocked": 1,
+    "source-specific step metric; no conversion from/to MIMS": 1
+  }
+}

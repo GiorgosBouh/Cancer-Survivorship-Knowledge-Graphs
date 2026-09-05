@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "participants_required_columns",
+      "passed": true,
+      "details": {
+        "missing_columns": []
+      }
+    },
+    {
+      "name": "participants_unique_seqn",
+      "passed": true,
+      "details": {
+        "duplicate_seqn_rows": 0
+      }
+    },
+    {
+      "name": "cancer_diagnoses_referential_integrity",
+      "passed": true,
+      "details": {
+        "missing_columns": [],
+        "orphan_rows": 0
+      }
+    },
+    {
+      "name": "pam_days_referential_integrity",
+      "passed": true,
+      "details": {
+        "missing_columns": [],
+        "orphan_rows": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+file_group,file_name,priority,purpose,expected_size,integration_use
+metadata,subject-info.csv,required_first,Confirm SEQN linkage and coverage against the current cancer-history cohort.,926.3 KB,cohort overlap and source manifest
+documentation,data_README.md,required_first,"Record source-variable definitions, file layout, and version-specific notes.",2.9 KB,provenance and citation evidence
+checksums,SHA256SUMS.txt,required_first,Verify downloaded files and support reproducibility.,3.0 KB,source manifest checksums
+activity_counts,csv/nhanes_1440_AC.csv.xz,required_for_first_metric_experiment,Add ActiGraph activity counts as a real derived source variable.,large,daily and valid-minute activity-count summaries
+step_counts,csv/nhanes_1440_actisteps.csv.xz,required_for_first_step_experiment,Add ActiLife step-count estimates for naive-vs-semantic comparison.,large,daily step-count summaries
+wear_prediction,csv/nhanes_1440_PAXPREDM.csv.xz,recommended,Compare source-provided wear prediction to existing PAXMIN/PAXDAY protocol variables.,large,valid-day protocol compatibility checks
+quality_flags,csv/nhanes_1440_PAXFLGSM.csv.xz,recommended,Preserve data-quality context for derived metrics.,small_to_medium,quality/provenance safeguards

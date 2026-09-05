@@ -1,0 +1,24 @@
+{
+  "created_at_utc": "2026-08-11T07:53:58.515066+00:00",
+  "synthetic_source_id": "synthetic_hip_counts_demo",
+  "nhanes_source_id": "nhanes_2011_2014_wrist_mims",
+  "synthetic_daily": "data/processed/synthetic_contrasting_daily_activity.csv",
+  "synthetic_protocol_results": "data/processed/synthetic_harmonisation_protocol_results.csv",
+  "source_variable_map": "data/processed/harmonisation_source_variable_map.csv",
+  "activity_definitions": "data/processed/harmonised_activity_definitions.csv",
+  "pairwise_comparison": "data/processed/source_harmonisation_pairwise_comparison.csv",
+  "documentation": "docs/semantic_harmonisation_demo.md",
+  "synthetic_daily_rows": 7785,
+  "synthetic_participants": 878,
+  "variable_mapping_rows": 7,
+  "definition_rows": 4,
+  "pairwise_comparison_rows": 878,
+  "pairwise_eligibility_agreement_rows": 868,
+  "pairwise_eligibility_disagreement_rows": 10,
+  "compatibility_counts": {
+    "compatible after protocol abstraction": 3,
+    "not harmonisable with NHANES wrist MIMS in current KG": 2,
+    "source-specific metric; not directly convertible": 2
+  },
+  "interpretation_limit": "Synthetic source is for semantic harmonisation testing only. MIMS and hip counts/minute are not asserted as convertible or numerically equivalent."
+}

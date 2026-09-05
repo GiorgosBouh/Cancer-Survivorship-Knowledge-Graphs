@@ -1,0 +1,8 @@
+Source,Compatibility status,Rows
+nhanes_2003_2006_hip_actigraph_pam,broad construct only; numeric equivalence blocked,1
+nhanes_2005_2006_hip_actigraph_pam,source-specific step metric; no conversion from/to MIMS,1
+nhanes_2011_2014_wrist_mims,compatible after protocol abstraction,2
+nhanes_2011_2014_wrist_mims,source-specific metric; not directly convertible,1
+synthetic_hip_counts_demo,compatible after protocol abstraction,1
+synthetic_hip_counts_demo,not harmonisable with NHANES wrist MIMS in current KG,2
+synthetic_hip_counts_demo,source-specific metric; not directly convertible,1

@@ -1,0 +1,64 @@
+{
+  "status": "review_completed_qualified_assertions_allowed",
+  "updated_at_utc": "2026-08-23T17:50:23.988690+00:00",
+  "review_target": "NHANES cancer_type_code to NCIt mapping",
+  "draft_mapping": "data/processed/cancer_type_ncit_mapping.csv",
+  "completed_review_sheet": "docs/review/ncit_cancer_type_review_sheet_completed.csv",
+  "approved_mapping": "data/processed/approved_cancer_type_ncit_mapping.csv",
+  "review_evidence_files": [
+    "docs/review/evidence/expert review of cancer codes 1.xlsx",
+    "docs/review/evidence/expert review of cancer codes 2.rtf"
+  ],
+  "policy": "NCIt IRIs are reviewed mappings from self-reported NHANES cancer-type codes. They are not registry-confirmed diagnoses, histology confirmations, staging, treatment, recurrence, or current disease-status assertions. The second oncologist review recommends preserving source-level site information and not inferring histology from prevalence.",
+  "acknowledgement_reviewers": [
+    {
+      "name": "Christos Kazazis",
+      "credentials": "MD",
+      "role": "Specialist doctor in Internal Medicine and Diabetology; expert reviewer of NHANES cancer-code to NCIt mapping spreadsheet",
+      "affiliation": "Department of History of Medicine and Medical Ethics, National and Kapodistrian University of Athens, Athens, Greece",
+      "additional_context": "Private physician, Samos, Greece; PhD candidate, Athens Medical School",
+      "contact": "chrkazazis@gmail.com",
+      "source_file": "expert review of cancer codes 1.xlsx"
+    },
+    {
+      "name": "Helena Linardou",
+      "credentials": "MD PhD",
+      "role": "Medical Oncologist, Director, 4th Oncology Dept. & Clinical Trials Center",
+      "affiliation": "Metropolitan Hospital, Athens, Greece",
+      "source_file": "expert review of cancer codes 2.rtf"
+    }
+  ],
+  "graph_assertion_policy": "Rows with graph_assertion_allowed=yes may be asserted as qualified NCIt mapping metadata on self-reported NHANES cancer-type codes. They must not be interpreted as confirmed histology, registry diagnosis, stage, treatment, recurrence, or current disease status.",
+  "summary": {
+    "created_at_utc": "2026-08-23T17:50:23.988591+00:00",
+    "review_rows": 33,
+    "decision_counts": {
+      "<blank>": 2,
+      "accept": 16,
+      "accept_with_note": 9,
+      "needs_more_information": 2,
+      "reject": 2,
+      "revise": 2
+    },
+    "approved_relation_counts": {
+      "<blank>": 2,
+      "broadMatch": 13,
+      "closeMatch": 14,
+      "notMapped": 1,
+      "reviewNeeded": 3
+    },
+    "assertion_status_counts": {
+      "not_asserted_needs_more_information_or_revision": 4,
+      "not_asserted_no_completed_approval": 2,
+      "not_asserted_rejected_or_not_mapped": 2,
+      "reviewed_qualified_mapping_asserted": 25
+    },
+    "graph_assertion_allowed_rows": 25,
+    "not_asserted_rows": 8,
+    "completed_review_sheet": "docs/review/ncit_cancer_type_review_sheet_completed.csv",
+    "approved_mapping": "data/processed/approved_cancer_type_ncit_mapping.csv",
+    "evidence_dir": "docs/review/evidence",
+    "domain_ontology_review_completed_by_these_files": false
+  },
+  "next_action": "Regenerate pilot KG and validation reports so reviewed NCIt mapping assertions are visible."
+}

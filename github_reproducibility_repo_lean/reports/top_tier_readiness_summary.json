@@ -1,0 +1,145 @@
+{
+  "created_at_utc": "2026-08-23T17:46:30.181089+00:00",
+  "top_tier_status": "not_ready_pending_external_review_and_archive",
+  "documentation": {
+    "top_tier_submission_plan": "docs/top_tier_submission_plan.md",
+    "naive_vs_semantic_evaluation": "docs/evaluation/naive_vs_semantic_harmonisation.md"
+  },
+  "outputs": {
+    "semantic_harmonisation_risk_register": "data/processed/semantic_harmonisation_risk_register.csv",
+    "protocol_discordance_risk_register": "data/processed/protocol_discordance_risk_register.csv",
+    "dataset_candidates": "data/processed/top_tier_dataset_candidates.csv",
+    "readiness_checklist": "data/processed/top_tier_readiness_checklist.csv",
+    "independent_pam_summary": "reports/independent_nhanes_pam_summary.json",
+    "domain_ontology_review_status": "reports/domain_ontology_review_status.json",
+    "reproducibility_archive_plan": "docs/reproducibility_archive_plan.md",
+    "reporting_checklists": "docs/reporting_checklists.md"
+  },
+  "semantic_risk_rows": 4,
+  "high_semantic_risk_rows": 3,
+  "protocol_risk_rows": 3,
+  "max_protocol_discordant_percent": 16.173121,
+  "readiness_counts": {
+    "complete": 6,
+    "partial_complete": 2,
+    "complete_with_caveat": 1,
+    "prepared_pending_review": 1,
+    "prepared_pending_deposit": 1
+  },
+  "pyshacl_conforms": true,
+  "failed_checks": 0,
+  "failed_policy_checks": 0,
+  "ncit_review_status": "review_completed_qualified_assertions_allowed",
+  "ncit_assertion_count": 19,
+  "independent_pam_summary": {
+    "created_at_utc": "2026-08-11T16:29:48.518156+00:00",
+    "source_id": "nhanes_2003_2006_hip_actigraph_pam",
+    "source_status": "independent_public_accelerometry_source_integrated",
+    "independence_claim": "Independent from NHANES 2011-2014 wrist/MIMS at participant, cycle, device-placement, and source-metric level; not an independent clinical cancer-survivorship cohort.",
+    "cancer_history_adults_total": 892,
+    "participants_with_paxraw_total": 768,
+    "daily_rows_total": 5367,
+    "retained_minute_rows_total": 7724170,
+    "semantic_risk_rows": 2,
+    "high_semantic_risk_rows": 2,
+    "cycle_stats": [
+      {
+        "cycle": "2003-2004",
+        "rows_scanned": 72250027,
+        "chunks_scanned": 145,
+        "retained_minute_rows": 4123017,
+        "participants_requested": 478,
+        "participants_with_paxraw": 410,
+        "daily_rows": 2864,
+        "has_step_column": false
+      },
+      {
+        "cycle": "2005-2006",
+        "rows_scanned": 74874095,
+        "chunks_scanned": 150,
+        "retained_minute_rows": 3601153,
+        "participants_requested": 414,
+        "participants_with_paxraw": 358,
+        "daily_rows": 2503,
+        "has_step_column": true
+      }
+    ],
+    "extraction": [
+      {
+        "cycle": "2003-2004",
+        "zip_path": "/home/ilab/Cancer Survivorship Knowledge Graphs/Automated Semantic Harmonisation of Accelerometry Based Physical Activity Definitions for Cancer Survivorship Knowledge Graphs/data/raw/2003-2004/PAXRAW_C.zip",
+        "xpt_path": "/home/ilab/Cancer Survivorship Knowledge Graphs/Automated Semantic Harmonisation of Accelerometry Based Physical Activity Definitions for Cancer Survivorship Knowledge Graphs/data/raw/2003-2004/paxraw_c.xpt",
+        "xpt_size_bytes": 2528752800,
+        "extracted": true
+      },
+      {
+        "cycle": "2005-2006",
+        "zip_path": "/home/ilab/Cancer Survivorship Knowledge Graphs/Automated Semantic Harmonisation of Accelerometry Based Physical Activity Definitions for Cancer Survivorship Knowledge Graphs/data/raw/2005-2006/PAXRAW_D.zip",
+        "xpt_path": "/home/ilab/Cancer Survivorship Knowledge Graphs/Automated Semantic Harmonisation of Accelerometry Based Physical Activity Definitions for Cancer Survivorship Knowledge Graphs/data/raw/2005-2006/paxraw_d.xpt",
+        "xpt_size_bytes": 2994965840,
+        "extracted": true
+      }
+    ],
+    "outputs": {
+      "participants": "data/processed/independent_nhanes_pam_participants.csv",
+      "daily_summary": "data/processed/independent_nhanes_pam_daily_summary.csv",
+      "participant_summary": "data/processed/independent_nhanes_pam_participant_summary.csv",
+      "semantic_map": "data/processed/independent_nhanes_pam_semantic_map.csv",
+      "semantic_risk_register": "data/processed/independent_nhanes_pam_semantic_risk_register.csv",
+      "documentation": "docs/independent_nhanes_pam_integration.md"
+    }
+  },
+  "pilot_kg_summary": {
+    "created_at_utc": "2026-08-23T17:45:40.328626+00:00",
+    "output": "data/processed/pilot_kg.ttl",
+    "participants": 20,
+    "diagnoses": 25,
+    "days": 60,
+    "feature_sets": 60,
+    "cancer_history_assertions": 20,
+    "minute_observations": 300,
+    "protocols": 3,
+    "protocol_results": 60,
+    "triples": 9324,
+    "code_mapping_rows_loaded": 96,
+    "code_labels_enriched": true,
+    "reviewed_ncit_mapping_rows_loaded": 25,
+    "reviewed_ncit_assertions_enabled": true,
+    "protocol_review_rows_loaded": 3,
+    "protocol_review_enriched": true,
+    "protocol_citation_rows_loaded": 12,
+    "protocol_citation_enriched": true,
+    "harmonisation_mapping_rows_loaded": 7,
+    "harmonised_activity_definitions_loaded": 4,
+    "synthetic_daily_activity_summaries": 60,
+    "independent_pam_daily_summaries": 20,
+    "independent_pam_harmonisation_mapping_rows_loaded": 2,
+    "synthetic_harmonisation_enriched": true,
+    "independent_pam_kg_enriched": true,
+    "selection_strategy": "participants with protocol-discordant inclusion results first, then cycle and SEQN order",
+    "limits": {
+      "participants": 20,
+      "max_days_per_participant": 3,
+      "max_minutes_per_day": 5
+    }
+  },
+  "domain_ontology_review_status": {
+    "created_at_utc": "2026-08-11T17:35:12.746633+00:00",
+    "status": "prepared_pending_external_review",
+    "review_sheet": "docs/review/domain_ontology_review_sheet.csv",
+    "instructions": "docs/review/domain_ontology_review_instructions.md",
+    "review_items": 6,
+    "pending_items": 6,
+    "accepted_items": 0,
+    "rejected_items": 0,
+    "scope_note": "Independent domain/ontology review is prepared but not completed. Do not claim external expert approval yet.",
+    "last_checked_after_cancer_code_review_utc": "2026-08-23T17:45:24.739022+00:00",
+    "cancer_code_review_files_received": true,
+    "cancer_code_review_files": [
+      "expert review of cancer codes 1.xlsx",
+      "expert review of cancer codes 2.rtf"
+    ],
+    "does_cancer_code_review_complete_domain_ontology_review": false,
+    "domain_review_note": "The received files complete cancer-code/NCIt expert review. They do not answer the separate accelerometry/domain-ontology review items on source independence, metric compatibility, valid-day interpretation, or KG modeling pattern."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "created_at_utc": "2026-08-10T19:27:23.677668+00:00",
+  "output": "data/processed/code_mappings.csv",
+  "mapping_rows": 96,
+  "rows_observed_in_current_processed_data": 87,
+  "status_counts": {
+    "source label ready": 63,
+    "source label ready; NCIt pending": 28,
+    "source label ready; needs expert/ontology review": 5
+  },
+  "variable_counts": {
+    "MCQ220": 4,
+    "PAXDAYWD": 7,
+    "PAXFLGSM": 26,
+    "PAXHAND": 4,
+    "PAXORENT": 3,
+    "PAXPREDM": 4,
+    "PAXQFM": 2,
+    "RIAGENDR": 2,
+    "RIDRETH1": 5,
+    "RIDRETH3": 6,
+    "cancer_type_code": 33
+  },
+  "sources": {
+    "DEMO_G": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/demo_g.htm",
+    "DEMO_H": "https://wwwn.cdc.gov/nchs/Data/Nhanes/Public/2013/DataFiles/DEMO_H.htm",
+    "MCQ_G": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/MCQ_G.htm",
+    "MCQ_H": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/MCQ_H.htm",
+    "PAXHD_G": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PAXHD_G.htm",
+    "PAXDAY_G": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PAXDAY_G.htm",
+    "PAXMIN_G": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PAXMIN_G.htm"
+  }
+}

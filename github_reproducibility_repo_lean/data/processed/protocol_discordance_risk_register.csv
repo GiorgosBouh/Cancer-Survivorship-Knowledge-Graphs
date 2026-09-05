@@ -1,0 +1,4 @@
+risk_id,left_protocol,right_protocol,participants_evaluated,discordant_participants,discordant_percent,naive_harmonisation_risk,kg_guarded_decision,risk_level
+wake_wear_10h_min4__vs__wake_wear_12h_min4,wake_wear_10h_min4,wake_wear_12h_min4,878,85,9.681093,treating valid-day protocols as interchangeable changes analytic inclusion,represent each protocol and query discordant eligibility explicitly,high
+wake_wear_10h_min4__vs__valid_minutes_20h_min4,wake_wear_10h_min4,valid_minutes_20h_min4,878,57,6.492027,treating valid-day protocols as interchangeable changes analytic inclusion,represent each protocol and query discordant eligibility explicitly,high
+wake_wear_12h_min4__vs__valid_minutes_20h_min4,wake_wear_12h_min4,valid_minutes_20h_min4,878,142,16.173121,treating valid-day protocols as interchangeable changes analytic inclusion,represent each protocol and query discordant eligibility explicitly,high

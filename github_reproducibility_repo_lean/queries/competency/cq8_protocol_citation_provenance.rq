@@ -1,0 +1,16 @@
+PREFIX cskg: <https://w3id.org/cskg/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+
+SELECT ?protocol_id ?citationRole ?supportLevel ?title ?sourceUrl ?citedClaim ?interpretationLimit
+WHERE {
+  ?protocol a cskg:ProcessingProtocol ;
+            dct:identifier ?protocol_id ;
+            cskg:hasProtocolCitationEvidence ?citation .
+  ?citation cskg:citationRole ?citationRole ;
+            cskg:supportLevel ?supportLevel ;
+            dct:title ?title ;
+            cskg:sourceUrl ?sourceUrl ;
+            cskg:citedClaim ?citedClaim ;
+            cskg:interpretationLimit ?interpretationLimit .
+}
+ORDER BY ?protocol_id ?citationRole ?supportLevel

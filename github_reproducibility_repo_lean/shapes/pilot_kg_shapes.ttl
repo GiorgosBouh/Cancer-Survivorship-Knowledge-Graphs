@@ -1,0 +1,184 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix cskg: <https://w3id.org/cskg/ontology/> .
+
+cskg:ParticipantShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:Participant ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ; sh:datatype xsd:integer ] ;
+    sh:property [ sh:path cskg:nhanesCycle ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:hasCancerHistoryCode ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:hasCancerHistoryAssertion ; sh:minCount 1 ; sh:class cskg:CancerHistoryAssertion ] ;
+    sh:property [ sh:path cskg:hasCancerDiagnosis ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:hasDailyMovementSummary ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:hasProtocolApplicationResult ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+
+cskg:CancerHistoryAssertionShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:CancerHistoryAssertion ;
+    sh:property [ sh:path cskg:hasCancerHistoryCode ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:sourceQuestion ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:assertionInterpretationLimit ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:CancerDiagnosisShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:CancerDiagnosis ;
+    sh:property [ sh:path cskg:diagnosisSlot ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:hasCancerTypeCode ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:SensorShape
+    a sh:NodeShape ;
+    sh:targetClass sosa:Sensor ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:hasDevicePlacementCode ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:hasDeviceOrientationCode ; sh:minCount 1 ] .
+
+cskg:DailyMovementSummaryShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:DailyMovementSummary ;
+    sh:property [ sh:path cskg:monitorDayIndex ; sh:minCount 1 ; sh:datatype xsd:integer ] ;
+    sh:property [ sh:path cskg:totalRecordedMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:validMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:dailyTotalMIMS ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:wakeWearMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:sleepWearMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:nonWearMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:unknownStatusMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:qualityFlagScore ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:hasDerivedFeatureSet ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:MinuteObservationShape
+    a sh:NodeShape ;
+    sh:targetClass sosa:Observation ;
+    sh:property [ sh:path cskg:monitorDayIndex ; sh:minCount 1 ; sh:datatype xsd:integer ] ;
+    sh:property [ sh:path cskg:epochLengthSeconds ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:minuteMIMS ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:predictedWearStateCode ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:qualityFlagScore ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:DerivedMovementFeatureSetShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:DerivedMovementFeatureSet ;
+    sh:property [ sh:path cskg:validMinuteRows ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:dailyTotalValidMIMS ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:peak30ValidMIMS ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:validWakeMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:validSleepMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:validNonWearMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:validUnknownMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasGeneratedBy ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:ProcessingProtocolShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:ProcessingProtocol ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:hasExecutableExpression ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:minValidDays ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:metric ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:unit ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:hasProtocolCitationEvidence ; sh:minCount 1 ; sh:class cskg:ProtocolCitationEvidence ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:ProtocolApplicationResultShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:ProtocolApplicationResult ;
+    sh:property [ sh:path cskg:appliesProtocol ; sh:minCount 1 ; sh:class cskg:ProcessingProtocol ] ;
+    sh:property [ sh:path cskg:observedDays ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:validDayCount ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:minValidDays ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:eligibleUnderProtocol ; sh:minCount 1 ; sh:datatype xsd:boolean ] ;
+    sh:property [ sh:path cskg:totalMIMS ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasGeneratedBy ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:ActivityDataSourceShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:ActivityDataSource ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ] ;
+    sh:property [ sh:path dct:title ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:sourceDeviceLocation ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:sourceMovementMetric ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:interpretationLimit ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:HarmonisedSourceVariableMappingShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:HarmonisedSourceVariableMapping ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:mapsFromActivitySource ; sh:minCount 1 ; sh:class cskg:ActivityDataSource ] ;
+    sh:property [ sh:path cskg:sourceVariableName ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:harmonisedConstruct ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:compatibilityStatus ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:interpretationLimit ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:HarmonisedActivityDefinitionShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:HarmonisedActivityDefinition ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:definedForActivitySource ; sh:minCount 1 ; sh:class cskg:ActivityDataSource ] ;
+    sh:property [ sh:path cskg:hasExecutableExpression ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:definitionType ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:compatibilityStatus ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:interpretationLimit ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:SyntheticDailyActivitySummaryShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:SyntheticDailyActivitySummary ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:seededFromNhanesDay ; sh:minCount 1 ; sh:class cskg:DailyMovementSummary ] ;
+    sh:property [ sh:path cskg:fromActivitySource ; sh:minCount 1 ; sh:class cskg:ActivityDataSource ] ;
+    sh:property [ sh:path cskg:sourceMovementMetric ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:validWearMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:dailyTotalAxisCounts ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:sourceDefinedMVPAMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:sourceDefinedSedentaryMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:interpretationLimit ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasGeneratedBy ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:ProtocolCitationEvidenceShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:ProtocolCitationEvidence ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:citationRole ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:sourceType ; sh:minCount 1 ] ;
+    sh:property [ sh:path dct:title ; sh:minCount 1 ] ;
+    sh:property [ sh:path dct:bibliographicCitation ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:sourceUrl ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:citedClaim ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:supportLevel ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:interpretationLimit ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+
+cskg:IndependentPAMDailySummaryShape
+    a sh:NodeShape ;
+    sh:targetClass cskg:IndependentPAMDailySummary ;
+    sh:property [ sh:path dct:identifier ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:sourceId ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:sourceParticipantIdentifier ; sh:minCount 1 ; sh:datatype xsd:integer ] ;
+    sh:property [ sh:path cskg:nhanesCycle ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:monitorDayIndex ; sh:minCount 1 ; sh:datatype xsd:integer ] ;
+    sh:property [ sh:path cskg:fromActivitySource ; sh:minCount 1 ; sh:class cskg:ActivityDataSource ] ;
+    sh:property [ sh:path cskg:sourceDeviceLocation ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:sourceMovementMetric ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:epochLengthSeconds ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:minuteRowCount ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:validWearMinutes ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:dailyTotalAxisCounts ; sh:minCount 1 ] ;
+    sh:property [ sh:path cskg:interpretationLimit ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasGeneratedBy ; sh:minCount 1 ] ;
+    sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ] .
+

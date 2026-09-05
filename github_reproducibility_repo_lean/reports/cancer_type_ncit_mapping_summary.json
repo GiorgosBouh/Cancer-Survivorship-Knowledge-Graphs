@@ -1,0 +1,29 @@
+{
+  "created_at_utc": "2026-08-10T19:55:49.074977+00:00",
+  "output": "data/processed/cancer_type_ncit_mapping.csv",
+  "mapping_rows": 33,
+  "rows_with_ncit_candidate": 24,
+  "rows_without_ncit_candidate": 9,
+  "observed_rows_with_ncit_candidate": 23,
+  "observed_rows_without_ncit_candidate": 6,
+  "status_counts": {
+    "draft_candidate": 24,
+    "manual_review_needed": 4,
+    "not_mapped": 5
+  },
+  "relation_counts": {
+    "broadMatch": 7,
+    "closeMatch": 15,
+    "exactMatch": 2,
+    "notMapped": 5,
+    "reviewNeeded": 4
+  },
+  "confidence_counts": {
+    "high": 16,
+    "low": 4,
+    "medium": 8,
+    "none": 5
+  },
+  "evs_api": "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit",
+  "note": "Draft review artifact only; NCIt IRIs are not yet asserted in the RDF graph."
+}

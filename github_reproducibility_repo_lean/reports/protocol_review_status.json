@@ -1,0 +1,15 @@
+{
+  "created_at_utc": "2026-08-11T06:36:14.050903+00:00",
+  "review_sheet": "docs/protocols/protocol_review_sheet.csv",
+  "protocol_rows": 3,
+  "review_status": "review_complete",
+  "review_decision_counts": {
+    "accept": 3
+  },
+  "approved_status_counts": {
+    "approved_24h_completeness_rule": 1,
+    "approved_completeness_rule": 1,
+    "approved_sensitivity_rule": 1
+  },
+  "policy": "Approved protocols are data completeness/sensitivity rules only; do not claim MVPA or sedentary classification."
+}

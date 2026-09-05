@@ -1,0 +1,24 @@
+{
+  "created_at_utc": "2026-08-11T08:23:47.003510+00:00",
+  "citation_evidence": "docs/protocols/protocol_citation_evidence.csv",
+  "documentation": "docs/protocols/protocol_citations.md",
+  "protocol_count": 3,
+  "protocols": [
+    "valid_minutes_20h_min4",
+    "wake_wear_10h_min4",
+    "wake_wear_12h_min4"
+  ],
+  "citation_rows": 12,
+  "citation_role_counts": {
+    "literature_context": 3,
+    "project_review_decision": 3,
+    "source_variable_definition": 6
+  },
+  "support_level_counts": {
+    "context_only_not_threshold_validation": 1,
+    "context_only_not_wrist_mims_validation": 2,
+    "direct_source_variable_support": 6,
+    "local_project_review_support": 3
+  },
+  "policy": "Citation evidence supports source variables, literature context, and local review status only; no MVPA/sedentary/classification claim is approved for NHANES wrist MIMS."
+}

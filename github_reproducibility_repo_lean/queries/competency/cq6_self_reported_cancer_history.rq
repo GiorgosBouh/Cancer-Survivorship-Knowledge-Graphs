@@ -1,0 +1,13 @@
+PREFIX cskg: <https://w3id.org/cskg/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+SELECT ?participant ?participant_id ?cancer_history_code ?cancer_history_label ?source
+WHERE {
+  ?participant a cskg:Participant ;
+    dct:identifier ?participant_id ;
+    cskg:hasCancerHistoryCode ?cancer_history_code ;
+    prov:wasDerivedFrom ?source .
+  OPTIONAL { ?participant cskg:cancerHistoryLabel ?cancer_history_label . }
+}
+ORDER BY ?participant_id

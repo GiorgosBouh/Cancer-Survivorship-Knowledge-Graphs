@@ -1,0 +1,4 @@
+Left protocol,Right protocol,Both eligible,Left only,Right only,Neither,Discordant participants
+wake_wear_10h_min4,wake_wear_12h_min4,722,85,0,71,85
+wake_wear_10h_min4,valid_minutes_20h_min4,806,1,56,15,57
+wake_wear_12h_min4,valid_minutes_20h_min4,721,1,141,15,142

@@ -1,0 +1,21 @@
+Measure,Value
+Participants,20
+Cancer diagnoses,25
+Cancer history assertions,20
+Daily movement summaries,60
+Minute observations,300
+Derived feature sets,60
+Processing protocols,3
+Protocol application results,60
+Protocol citation evidence nodes,12
+Activity data sources,4
+Harmonisation source-variable mappings,9
+Independent PAM daily summaries,20
+Harmonised activity definitions,4
+Synthetic daily activity summaries,60
+RDF triples,9324
+pySHACL conforms,True
+Validation failed checks,0
+Failed policy checks,0
+NCIt review status,review_completed_qualified_assertions_allowed
+NCIt assertion count while pending,19

@@ -1,0 +1,20 @@
+PREFIX cskg: <https://w3id.org/cskg/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+SELECT ?summary ?sourceId ?cycle ?sourceParticipantIdentifier ?day ?metric ?validWearMinutes ?dailyAxisCounts ?dailySteps ?interpretationLimit
+WHERE {
+  ?summary a cskg:IndependentPAMDailySummary ;
+           cskg:sourceId ?sourceId ;
+           cskg:nhanesCycle ?cycle ;
+           cskg:sourceParticipantIdentifier ?sourceParticipantIdentifier ;
+           cskg:monitorDayIndex ?day ;
+           cskg:sourceMovementMetric ?metric ;
+           cskg:validWearMinutes ?validWearMinutes ;
+           cskg:dailyTotalAxisCounts ?dailyAxisCounts ;
+           cskg:interpretationLimit ?interpretationLimit ;
+           prov:wasDerivedFrom ?sourceTable .
+  OPTIONAL { ?summary cskg:dailyTotalSteps ?dailySteps . }
+}
+ORDER BY ?cycle ?sourceParticipantIdentifier ?day
+LIMIT 20

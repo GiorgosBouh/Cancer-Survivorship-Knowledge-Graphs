@@ -1,0 +1,58 @@
+{
+  "created_at_utc": "2026-08-11T16:29:48.518156+00:00",
+  "source_id": "nhanes_2003_2006_hip_actigraph_pam",
+  "source_status": "independent_public_accelerometry_source_integrated",
+  "independence_claim": "Independent from NHANES 2011-2014 wrist/MIMS at participant, cycle, device-placement, and source-metric level; not an independent clinical cancer-survivorship cohort.",
+  "cancer_history_adults_total": 892,
+  "participants_with_paxraw_total": 768,
+  "daily_rows_total": 5367,
+  "retained_minute_rows_total": 7724170,
+  "semantic_risk_rows": 2,
+  "high_semantic_risk_rows": 2,
+  "cycle_stats": [
+    {
+      "cycle": "2003-2004",
+      "rows_scanned": 72250027,
+      "chunks_scanned": 145,
+      "retained_minute_rows": 4123017,
+      "participants_requested": 478,
+      "participants_with_paxraw": 410,
+      "daily_rows": 2864,
+      "has_step_column": false
+    },
+    {
+      "cycle": "2005-2006",
+      "rows_scanned": 74874095,
+      "chunks_scanned": 150,
+      "retained_minute_rows": 3601153,
+      "participants_requested": 414,
+      "participants_with_paxraw": 358,
+      "daily_rows": 2503,
+      "has_step_column": true
+    }
+  ],
+  "extraction": [
+    {
+      "cycle": "2003-2004",
+      "zip_path": "/home/ilab/Cancer Survivorship Knowledge Graphs/Automated Semantic Harmonisation of Accelerometry Based Physical Activity Definitions for Cancer Survivorship Knowledge Graphs/data/raw/2003-2004/PAXRAW_C.zip",
+      "xpt_path": "/home/ilab/Cancer Survivorship Knowledge Graphs/Automated Semantic Harmonisation of Accelerometry Based Physical Activity Definitions for Cancer Survivorship Knowledge Graphs/data/raw/2003-2004/paxraw_c.xpt",
+      "xpt_size_bytes": 2528752800,
+      "extracted": true
+    },
+    {
+      "cycle": "2005-2006",
+      "zip_path": "/home/ilab/Cancer Survivorship Knowledge Graphs/Automated Semantic Harmonisation of Accelerometry Based Physical Activity Definitions for Cancer Survivorship Knowledge Graphs/data/raw/2005-2006/PAXRAW_D.zip",
+      "xpt_path": "/home/ilab/Cancer Survivorship Knowledge Graphs/Automated Semantic Harmonisation of Accelerometry Based Physical Activity Definitions for Cancer Survivorship Knowledge Graphs/data/raw/2005-2006/paxraw_d.xpt",
+      "xpt_size_bytes": 2994965840,
+      "extracted": true
+    }
+  ],
+  "outputs": {
+    "participants": "data/processed/independent_nhanes_pam_participants.csv",
+    "daily_summary": "data/processed/independent_nhanes_pam_daily_summary.csv",
+    "participant_summary": "data/processed/independent_nhanes_pam_participant_summary.csv",
+    "semantic_map": "data/processed/independent_nhanes_pam_semantic_map.csv",
+    "semantic_risk_register": "data/processed/independent_nhanes_pam_semantic_risk_register.csv",
+    "documentation": "docs/independent_nhanes_pam_integration.md"
+  }
+}

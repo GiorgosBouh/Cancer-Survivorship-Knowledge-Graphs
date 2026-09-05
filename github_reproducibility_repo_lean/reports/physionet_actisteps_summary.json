@@ -1,0 +1,19 @@
+{
+  "created_at_utc": "2026-08-11T16:08:50.593210+00:00",
+  "source_id": "physionet_nhanes_steps_activity_counts_v1_0_2",
+  "metric_id": "actilife_steps",
+  "input": "data/raw/physionet-minute-level-step-count-nhanes-1.0.2/csv/nhanes_1440_actisteps.csv.xz",
+  "rows_scanned": 130186,
+  "chunks_scanned": 174,
+  "project_participants": 1035,
+  "daily_summary_rows": 7785,
+  "participant_summary_rows": 878,
+  "participants_with_actisteps": 878,
+  "mean_daily_actilife_steps_over_participants": 7940.529821,
+  "interpretation_limit": "ActiLife step counts are real derived step-count metrics from the PhysioNet NHANES source. They are not MIMS, MVPA, sedentary, or clinical physical-activity classifications.",
+  "outputs": {
+    "daily_summary": "data/processed/physionet_actisteps_daily_summary.csv",
+    "participant_summary": "data/processed/physionet_actisteps_participant_summary.csv",
+    "documentation": "docs/physionet_actisteps_integration.md"
+  }
+}

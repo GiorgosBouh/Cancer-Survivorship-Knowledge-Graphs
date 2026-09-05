@@ -1,0 +1,5 @@
+comparison_id,left_definition,right_definition,denominator,left_true,right_true,both_true,left_only,right_only,both_false,discordant,plain_meaning
+valid_day_10h_vs_12h_min4,>=4 days with >=10 h valid wear proxy,>=4 days with >=12 h valid wear proxy,768,722,722,722,0,0,46,0,"This source has near-complete valid PAM days, so this wear-time sensitivity did not change eligibility here."
+mvpa_760_vs_2020_any_ge30min_day,mean >=30 min/day at >=760 counts/min,mean >=30 min/day at >=2020 counts/min,722,457,58,58,399,0,265,399,Changing the MVPA cut-point changes who crosses the same demonstration activity threshold.
+mvpa_2020_any_vs_10min_bout_ge30min_day,"mean >=30 min/day at >=2020 counts/min, any valid minute","mean >=30 min/day at >=2020 counts/min, strict 10-min bouts",722,58,11,11,47,0,664,47,Adding a bout rule changes who crosses the same demonstration activity threshold.
+mvpa_760_any_vs_10min_bout_ge30min_day,"mean >=30 min/day at >=760 counts/min, any valid minute","mean >=30 min/day at >=760 counts/min, strict 10-min bouts",722,457,50,50,407,0,265,407,Adding a bout rule has a larger effect when the lower intensity cut-point is used.

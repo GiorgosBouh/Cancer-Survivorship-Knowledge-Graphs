@@ -1,0 +1,17 @@
+PREFIX cskg: <https://w3id.org/cskg/ontology/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX time: <http://www.w3.org/2006/time#>
+
+SELECT ?day ?observation ?position_seconds ?epoch_seconds ?minute_mims ?wear_state_code ?wear_state_label ?quality_score ?quality_label
+WHERE {
+  ?day cskg:hasMinuteObservation ?observation .
+  ?observation a sosa:Observation ;
+    time:numericPosition ?position_seconds ;
+    cskg:epochLengthSeconds ?epoch_seconds ;
+    cskg:minuteMIMS ?minute_mims ;
+    cskg:predictedWearStateCode ?wear_state_code ;
+    cskg:qualityFlagScore ?quality_score .
+  OPTIONAL { ?observation cskg:predictedWearStateLabel ?wear_state_label . }
+  OPTIONAL { ?observation cskg:qualityFlagScoreLabel ?quality_label . }
+}
+ORDER BY ?day ?position_seconds

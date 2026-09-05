@@ -1,0 +1,4 @@
+Protocol,Definition,Expression,Minimum valid days,Review status,Classification type,Interpretation limit
+wake_wear_10h_min4,At least 10 hours valid wake wear on at least 4 days,PAXWWMD >= 600,4,approved_completeness_rule,candidate completeness rule,Completeness/sensitivity rule only; not an activity classification.
+wake_wear_12h_min4,At least 12 hours valid wake wear on at least 4 days,PAXWWMD >= 720,4,approved_sensitivity_rule,sensitivity completeness rule,Completeness/sensitivity rule only; not an activity classification.
+valid_minutes_20h_min4,At least 20 hours valid data on at least 4 days,PAXVMD >= 1200,4,approved_24h_completeness_rule,24-hour completeness rule,Completeness/sensitivity rule only; not an activity classification.

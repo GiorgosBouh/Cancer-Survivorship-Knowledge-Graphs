@@ -1,0 +1,75 @@
+{
+  "created_at_utc": "2026-08-10T18:33:23.820806+00:00",
+  "sources": [
+    {
+      "cycle": "2011-2012",
+      "component": "DEMO",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DEMO_G.XPT",
+      "path": "data/raw/2011-2012/DEMO_G.XPT",
+      "sha256": "eaf0525d1952626885af3e935415a1f66ad62c18698080e7354789c125af252d"
+    },
+    {
+      "cycle": "2011-2012",
+      "component": "MCQ",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/MCQ_G.XPT",
+      "path": "data/raw/2011-2012/MCQ_G.XPT",
+      "sha256": "7538eb86c72b81fd5e76b56120fcb068ed38149d44650e9e750670ad58658d52"
+    },
+    {
+      "cycle": "2011-2012",
+      "component": "PAXHD",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PAXHD_G.XPT",
+      "path": "data/raw/2011-2012/PAXHD_G.XPT",
+      "sha256": "3b439c38e389c41245202301a33f14dd0942803449202f9c2514d10cb27390be"
+    },
+    {
+      "cycle": "2011-2012",
+      "component": "PAXDAY",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PAXDAY_G.XPT",
+      "path": "data/raw/2011-2012/PAXDAY_G.XPT",
+      "sha256": "2c2ffafe0896de13658233576661eaf6addc81109aee2b28b2018b940e752079"
+    },
+    {
+      "cycle": "2013-2014",
+      "component": "DEMO",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/DEMO_H.XPT",
+      "path": "data/raw/2013-2014/DEMO_H.XPT",
+      "sha256": "f8f0cbb3085a323d4cde22349b164878fea1e64dbc404e65b5815c7816b547d7"
+    },
+    {
+      "cycle": "2013-2014",
+      "component": "MCQ",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/MCQ_H.XPT",
+      "path": "data/raw/2013-2014/MCQ_H.XPT",
+      "sha256": "5c83210e6e1fe929282621322ed0f94d95cdb0a37ccaff36f703ab0b2e7b9dc6"
+    },
+    {
+      "cycle": "2013-2014",
+      "component": "PAXHD",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/PAXHD_H.XPT",
+      "path": "data/raw/2013-2014/PAXHD_H.XPT",
+      "sha256": "4a2d7b6a2f0b038ceaaf718bbb65ffeea62a31d1543b2b657458bc6b5127f7f9"
+    },
+    {
+      "cycle": "2013-2014",
+      "component": "PAXDAY",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/PAXDAY_H.XPT",
+      "path": "data/raw/2013-2014/PAXDAY_H.XPT",
+      "sha256": "a2938ac350d077091207de706c848461e282984747c83c1f07070f9a04a849f6"
+    },
+    {
+      "cycle": "2011-2012",
+      "component": "PAXMIN",
+      "url": "https://ftp.cdc.gov/pub/NHANES/LargeDataFiles/PAXMIN_G.xpt",
+      "path": "data/raw/2011-2012/PAXMIN_G.xpt",
+      "sha256": "756324e202660e2c028f9f99a83e498333ac36b0364d3e0f5601b54daef213ee"
+    },
+    {
+      "cycle": "2013-2014",
+      "component": "PAXMIN",
+      "url": "https://ftp.cdc.gov/pub/NHANES/LargeDataFiles/PAXMIN_H.xpt",
+      "path": "data/raw/2013-2014/PAXMIN_H.xpt",
+      "sha256": "4b1aec371ebfca456ff2d386bc21444ddcb9ac06fdc8f13c3ed8589413d053bd"
+    }
+  ]
+}

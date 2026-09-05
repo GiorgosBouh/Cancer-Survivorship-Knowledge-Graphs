@@ -1,0 +1,19 @@
+PREFIX cskg: <https://w3id.org/cskg/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+
+SELECT ?participant ?participant_id ?left_protocol ?right_protocol ?left_eligible ?right_eligible
+WHERE {
+  ?participant a cskg:Participant ;
+    dct:identifier ?participant_id ;
+    cskg:hasProtocolApplicationResult ?left_result ;
+    cskg:hasProtocolApplicationResult ?right_result .
+
+  ?left_result cskg:appliesProtocol ?left_protocol ;
+    cskg:eligibleUnderProtocol ?left_eligible .
+  ?right_result cskg:appliesProtocol ?right_protocol ;
+    cskg:eligibleUnderProtocol ?right_eligible .
+
+  FILTER(str(?left_protocol) < str(?right_protocol))
+  FILTER(?left_eligible != ?right_eligible)
+}
+ORDER BY ?participant_id ?left_protocol ?right_protocol
